@@ -23,7 +23,13 @@ export function Error({ message }: ErrorProps) {
         color={"white"}
         padding={"0.5rem"}
         borderRadius={"0.2rem"}
-        background="linear-gradient(315deg, #6e72fc 0%, #ad1deb 74%)"
+        background={
+          "radial-gradient(circle at 10% 20%, rgb(255, 131, 61) 0%, rgb(249, 183, 23) 90%)"
+        }
+        sx={{
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+        }}
         fontSize={"1rem"}
         fontWeight={700}
         transition={"all 0.3s ease"}
