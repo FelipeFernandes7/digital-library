@@ -4,7 +4,7 @@ export function Home() {
   return (
     <Chakra.Flex
       borderTopRadius={"1rem"}
-      bg={"#232323"}
+      bg={"#131313"}
       flexDirection={"column"}
       alignItems={"center"}
       gap={2}
