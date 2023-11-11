@@ -71,8 +71,10 @@ export function ModalLogin({ isOpen, onClose }: ModalLoginProps) {
       <Chakra.ModalContent bg={"#181818"}>
         <Chakra.ModalHeader
           fontWeight={700}
-          backgroundColor={"#6e72fc"}
-          backgroundImage="linear-gradient(315deg, #6e72fc 0%, #ad1deb 74%)"
+          bg={"rgb(255, 131, 61)"}
+          backgroundImage={
+            "radial-gradient(circle at 10% 20%, rgb(255, 131, 61) 0%, rgb(249, 183, 23) 90%)"
+          }
           sx={{
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
@@ -96,6 +98,7 @@ export function ModalLogin({ isOpen, onClose }: ModalLoginProps) {
             <Chakra.FormControl mt={4}>
               <Chakra.FormLabel>Senha</Chakra.FormLabel>
               <TextField
+                type="password"
                 name="password"
                 register={register}
                 placeholder="digite sua senha"
@@ -115,7 +118,9 @@ export function ModalLogin({ isOpen, onClose }: ModalLoginProps) {
               mr={3}
               w={"full"}
               color={"white"}
-              background="linear-gradient(315deg, #6e72fc 0%, #ad1deb 74%)"
+              backgroundImage={
+                "radial-gradient(circle at 10% 20%, rgb(255, 131, 61) 0%, rgb(249, 183, 23) 90%)"
+              }
               fontSize={"1rem"}
               fontWeight={700}
               transition={"all 0.3s ease"}
