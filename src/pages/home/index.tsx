@@ -16,7 +16,7 @@ export function Home() {
         Produtos
       </Chakra.Text>
       <Chakra.Flex
-        gap={2}
+        gap={5}
         flexWrap={"wrap"}
         alignItems={"center"}
         justifyContent={"center"}
