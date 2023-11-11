@@ -206,6 +206,7 @@ export function Header() {
             p={"10px"}
           >
             <Chakra.Flex
+              mt={"2rem"}
               bg={"white"}
               borderRadius={"0.5rem"}
               border={"1px solid white"}
