@@ -21,17 +21,17 @@ const router = createBrowserRouter([
           </Private>
         ),
       },
-      {
-        path: "*",
-        element: (
-          <Error
-            message={
-              "Ops, parece que essa página não existe. Sentimos muito :'(, tente acessar a página inicial"
-            }
-          />
-        ),
-      },
     ],
+  },
+  {
+    path: "*",
+    element: (
+      <Error
+        message={
+          "Ops, parece que essa página não existe. Sentimos muito :'(, tente acessar a página inicial"
+        }
+      />
+    ),
   },
 ]);
 
