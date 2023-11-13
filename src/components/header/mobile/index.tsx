@@ -24,7 +24,7 @@ export function HeaderMobile({ isOpen, onOpen, onClose }: HeaderMobileProps) {
       flexDirection={"column"}
       zIndex={"10"}
       mt={"0.5rem"}
-      mb={"2rem"}
+      mb={"1.5rem"}
     >
       <Chakra.Flex
         w={"100%"}
