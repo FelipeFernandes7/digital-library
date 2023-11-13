@@ -9,10 +9,10 @@ import {
 } from "firebase/auth";
 import { createContext, ReactNode, useEffect, useState } from "react";
 
-import { parseUser } from "../helpers/utils";
 import { auth, database } from "../services";
 import { onValue, ref, set, update } from "firebase/database";
 import toast from "react-hot-toast";
+import { parseUser } from "../helpers";
 
 type AuthProps = {
   children: ReactNode;
