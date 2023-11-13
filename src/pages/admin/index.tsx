@@ -48,7 +48,7 @@ export function Admin() {
             bg={"transparent"}
             border={"1px solid #525252"}
             w={"full"}
-            placeholder="Imagem do Produto"
+            placeholder="Link da Imagem do Produto"
           />
           <TextField
             h={"3rem"}
@@ -97,6 +97,7 @@ export function Admin() {
           />
           <Chakra.Button
             w={"100%"}
+            h={"2.7rem"}
             color={"white"}
             gap={"0.5rem"}
             padding={"0.5rem"}
@@ -104,7 +105,7 @@ export function Admin() {
             background={
               "radial-gradient(circle at 10% 20%, rgb(255, 131, 61) 0%, rgb(249, 183, 23) 90%)"
             }
-            fontSize={"0.72rem"}
+            fontSize={"1rem"}
             fontWeight={700}
             transition={"all 0.3s ease"}
             _active={{
