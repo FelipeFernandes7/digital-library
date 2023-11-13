@@ -1,8 +1,13 @@
 import * as Chakra from "@chakra-ui/react";
 import { Temperature } from "../../components/temperature";
 import { TextField } from "../../components/textfield";
+import { useState } from "react";
 
 export function Admin() {
+  const [bestSeller, setBestSeller] = useState({
+    yes: false,
+    no: false,
+  });
   return (
     <Chakra.Flex w={"100%"} flexDirection={"column"} alignItems={"center"}>
       <Chakra.Flex
@@ -42,6 +47,7 @@ export function Admin() {
           maxW={{ md: "400px", base: "100%" }}
         >
           <TextField
+            label="Link da Imagem do Produto"
             h={"3rem"}
             borderRadius={"2rem"}
             variant={"unstyled"}
@@ -51,6 +57,7 @@ export function Admin() {
             placeholder="Link da Imagem do Produto"
           />
           <TextField
+            label="Título"
             h={"3rem"}
             borderRadius={"2rem"}
             variant={"unstyled"}
@@ -60,6 +67,7 @@ export function Admin() {
             placeholder="Título"
           />
           <TextField
+            label="Autor"
             h={"3rem"}
             borderRadius={"2rem"}
             variant={"unstyled"}
@@ -69,6 +77,7 @@ export function Admin() {
             placeholder="Autor"
           />
           <TextField
+            label="Descrição"
             h={"3rem"}
             borderRadius={"2rem"}
             variant={"unstyled"}
@@ -78,6 +87,7 @@ export function Admin() {
             placeholder="Descrição"
           />
           <TextField
+            label="Preço"
             h={"3rem"}
             borderRadius={"2rem"}
             variant={"unstyled"}
@@ -86,15 +96,41 @@ export function Admin() {
             w={"full"}
             placeholder="Preço"
           />
-          <TextField
-            h={"3rem"}
-            borderRadius={"2rem"}
-            variant={"unstyled"}
-            bg={"transparent"}
-            border={"1px solid #525252"}
-            w={"full"}
-            placeholder="Mais vendido?"
-          />
+          <Chakra.Box display={"flex"} w={"100%"} flexDirection={"column"}>
+            <Chakra.Text>Produto está em Alta?</Chakra.Text>
+            <Chakra.Flex
+              alignItems={"center"}
+              gap={"0.5rem"}
+              w={"100%"}
+              mt={"0.5rem"}
+            >
+              <Chakra.Button
+                w={"100%"}
+                onClick={() =>
+                  setBestSeller({ no: false, yes: !bestSeller.yes })
+                }
+                variant={"unstyled"}
+                borderRadius={"2rem"}
+                border={!bestSeller.yes ? "1px solid #22c55e" : "none"}
+                bg={bestSeller.yes ? "#22c55e" : "transparent"}
+              >
+                Sim
+              </Chakra.Button>
+              <Chakra.Button
+                w={"100%"}
+                onClick={() =>
+                  setBestSeller({ no: !bestSeller.no, yes: false })
+                }
+                variant={"unstyled"}
+                borderRadius={"2rem"}
+                bg={bestSeller.no ? "#e11d48" : "none"}
+                border={!bestSeller.no ? "1px solid #e11d48" : "none"}
+              >
+                Não
+              </Chakra.Button>
+            </Chakra.Flex>
+          </Chakra.Box>
+
           <Chakra.Button
             w={"100%"}
             h={"2.7rem"}
