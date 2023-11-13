@@ -1,5 +1,6 @@
 import * as Chakra from "@chakra-ui/react";
 import { Product } from "../../components/product";
+import { BestSeller } from "../../components/bestseller";
 
 export function Home() {
   const booksMock = [
@@ -124,19 +125,45 @@ export function Home() {
       image: "https://via.placeholder.com/150",
     },
   ];
-
+  const bestSellers = booksMock.filter((book) => book.bestSeller);
   return (
     <Chakra.Flex
       borderTopRadius={"1rem"}
       flexDirection={"column"}
       alignItems={"center"}
-      mt={{ base: "-50px", md: "0" }}
       zIndex={"50"}
       pt={"30px"}
       gap={2}
+      overflowX={"hidden"}
     >
-      <Chakra.Text color={"white"} fontWeight={700} fontSize={"1.5rem"}>
-        Produtos
+      <Chakra.Box
+        gap={{ md: 4, base: 2 }}
+        overflowX={"auto"}
+        mb={"3rem"}
+        display={"flex"}
+        justifyContent={"flex-start"}
+        alignItems={"center"}
+        maxW={"100%"}
+        p={2}
+        sx={{
+          "> div": {
+            flex: "0 0 auto",
+          },
+        }}
+      >
+        {bestSellers.map((product) => (
+          <BestSeller key={product.id} image={product.image} />
+        ))}
+      </Chakra.Box>
+      <Chakra.Text
+        w={"100%"}
+        justifyContent={"flex-end"}
+        color={"white"}
+        fontWeight={700}
+        fontSize={"1.5rem"}
+        ml={{ base: "1.5rem", md: "1.5rem" }}
+      >
+        Todos os Livros
       </Chakra.Text>
       <Chakra.Flex
         w={"100%"}

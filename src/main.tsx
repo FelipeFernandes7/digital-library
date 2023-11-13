@@ -10,9 +10,9 @@ import { Toaster } from "react-hot-toast";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <AuthProvider>
+      <GlobalStyles />
       <ChakraProvider>
         <Toaster position="top-center" reverseOrder={false} />
-        <GlobalStyles />
         <RouterProvider router={router} />
       </ChakraProvider>
     </AuthProvider>
