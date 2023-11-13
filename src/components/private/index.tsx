@@ -22,7 +22,7 @@ export function Private({ children }: PrivateProps) {
         align="center"
         justify="center"
       >
-        <Chakra.Spinner size={"xl"} color="#ad1deb" />
+        <Chakra.Spinner size={"xl"} color="#fff" />
       </Chakra.Flex>
     );
   }
