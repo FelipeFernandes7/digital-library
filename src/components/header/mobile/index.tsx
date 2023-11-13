@@ -13,9 +13,9 @@ interface HeaderMobileProps {
 }
 export function HeaderMobile({ isOpen, onOpen, onClose }: HeaderMobileProps) {
   const navigate = useNavigate();
+  const { user, logOut } = useAuth();
   const location = useLocation();
   const path = location.pathname;
-  const { user, logOut } = useAuth();
   const signed = !!user;
   const isAdmin = path === "/admin";
   return (
@@ -24,7 +24,7 @@ export function HeaderMobile({ isOpen, onOpen, onClose }: HeaderMobileProps) {
       flexDirection={"column"}
       zIndex={"10"}
       mt={"0.5rem"}
-      mb={"4rem"}
+      mb={"2rem"}
     >
       <Chakra.Flex
         w={"100%"}
