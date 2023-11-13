@@ -4,6 +4,7 @@ import { ModalLogin } from "../../modal/modalLogin";
 import { MdAdminPanelSettings } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
 import { getGreetingMessage } from "../../../helpers/getGreeting";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface HeaderMobileProps {
   isOpen: boolean;
@@ -11,9 +12,12 @@ interface HeaderMobileProps {
   onClose: () => void;
 }
 export function HeaderMobile({ isOpen, onOpen, onClose }: HeaderMobileProps) {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const path = location.pathname;
   const { user, logOut } = useAuth();
   const signed = !!user;
-
+  const isAdmin = path === "/admin";
   return (
     <Chakra.Flex
       w={"100%"}
@@ -38,14 +42,30 @@ export function HeaderMobile({ isOpen, onOpen, onClose }: HeaderMobileProps) {
             {getGreetingMessage()}
           </Chakra.Text>
           <Chakra.Text
+            onClick={() => navigate("/")}
             w={"100%"}
             fontSize={"1rem"}
             fontWeight={700}
             color={"white"}
+            cursor={"pointer"}
           >
             Livraria Digital
           </Chakra.Text>
         </Chakra.Flex>
+        {signed && (
+          <Chakra.Box cursor={"pointer"}>
+            <Chakra.Icon
+              onClick={() => navigate("/admin")}
+              color={isAdmin ? "rgb(249, 183, 23) " : "white"}
+              as={MdAdminPanelSettings}
+              fontSize={"2rem"}
+              _hover={{
+                transition: "all 0.3s ease",
+                opacity: 0.8,
+              }}
+            />
+          </Chakra.Box>
+        )}
         <Chakra.Flex>
           {!signed ? (
             <Chakra.Button
@@ -78,9 +98,12 @@ export function HeaderMobile({ isOpen, onOpen, onClose }: HeaderMobileProps) {
               onClick={logOut}
               gap={"0.5rem"}
               padding={"0.5rem"}
-              borderRadius={"0.2rem"}
               fontSize={"0.72rem"}
               fontWeight={700}
+              borderRadius={{ base: "1rem", md: "2rem" }}
+              background={
+                "radial-gradient(circle at 10% 20%, rgb(255, 131, 61) 0%, rgb(249, 183, 23) 90%)"
+              }
               transition={"all 0.3s ease"}
               _active={{
                 transform: "scale(0.95)",
@@ -93,7 +116,7 @@ export function HeaderMobile({ isOpen, onOpen, onClose }: HeaderMobileProps) {
                 as={FiLogOut}
                 fontSize={"1.5rem"}
                 cursor={"pointer"}
-                color={"#f97316"}
+                color={"#fff"}
               />
             </Chakra.Button>
           )}

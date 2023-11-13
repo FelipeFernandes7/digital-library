@@ -18,7 +18,7 @@ export function HeaderDesktop({ isOpen, onOpen, onClose }: HeaderDesktopProps) {
   const location = useLocation();
   const path = location.pathname;
   const navigate = useNavigate();
-
+  const isAdmin = path === "/admin";
   return (
     <Chakra.Flex
       w={"100%"}
@@ -49,32 +49,23 @@ export function HeaderDesktop({ isOpen, onOpen, onClose }: HeaderDesktopProps) {
         <Link to={"/"}>Livraria Digital</Link>
       </Chakra.Text>
       {signed && (
-        <Chakra.Button
-          onClick={() => navigate("/admin")}
-          w={"30%"}
-          background={
-            path === "/admin"
-              ? "transparent"
-              : "radial-gradient(circle at 10% 20%, rgb(255, 131, 61) 0%, rgb(249, 183, 23) 90%)"
-          }
+        <Chakra.Box
+          cursor={"pointer"}
           display={"flex"}
-          justifyContent={"center"}
           alignItems={"center"}
-          color={path === "/admin" ? " rgb(249, 183, 23)" : "none"}
-          fontSize={"1rem"}
-          fontWeight={700}
-          borderRadius={"2rem"}
-          border={path === "/admin" ? "1px solid  rgb(249, 183, 23)" : "none"}
-          _hover={{
-            opacity: 0.9,
-          }}
-          _active={{
-            transition: "all 0.3s ease",
-            transform: "scale(0.95)",
-          }}
+          justifyContent={"center"}
         >
-          Área Admin
-        </Chakra.Button>
+          <Chakra.Icon
+            onClick={() => navigate("/admin")}
+            color={isAdmin ? "rgb(249, 183, 23) " : "white"}
+            as={MdAdminPanelSettings}
+            fontSize={"2.5rem"}
+            _hover={{
+              transition: "all 0.3s ease",
+              opacity: 0.8,
+            }}
+          />
+        </Chakra.Box>
       )}
 
       <Chakra.Flex w={"100%"} justifyContent={"flex-end"}>
