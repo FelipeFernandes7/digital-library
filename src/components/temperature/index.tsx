@@ -6,14 +6,8 @@ import { useEffect, useState } from "react";
 import { FaCloudMoon, FaCloudSun, FaMoon } from "react-icons/fa";
 import { BsSun, BsThermometerSun, BsSnow2, BsSunFill } from "react-icons/bs";
 
-interface Weather {
-  id: number;
-  main: string;
-  description: string;
-  icon: string;
-}
 export function Temperature() {
-  const [weather, setWeather] = useState<ClimateApiResponse | null>();
+  const [weather, setWeather] = useState<ClimateApiResponse>();
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const weatherIcons: Record<string, React.ComponentType<any>> = {
@@ -28,16 +22,12 @@ export function Temperature() {
     return IconComponent ? <IconComponent /> : null;
   }
 
-  const filteredWeatherIcons = weather?.weather.filter(
-    (w: Weather) => weatherIcons[w.icon],
-  );
-
   useEffect(() => {
     async function fetchData() {
       try {
         const response = await getTodayWeather();
-
-        if (response) {
+        console.log(response, "response");
+        if (response && response.main && response.main.temp !== undefined) {
           const temperatureCelsius = kelvinToCelsius(response.main.temp);
 
           const weatherWithCelsius: ClimateApiResponse = {
@@ -47,6 +37,7 @@ export function Temperature() {
             },
           };
           setWeather(weatherWithCelsius);
+          console.log(weatherWithCelsius, "weather");
         }
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
@@ -59,13 +50,14 @@ export function Temperature() {
 
   return (
     <Chakra.Flex w={"100%"} alignItems={"center"}>
-      {filteredWeatherIcons &&
-        filteredWeatherIcons.map((w: Weather) => (
+      {weather &&
+        weather?.weather.length > 0 &&
+        weather?.weather.map((w) => (
           <Chakra.Flex
             key={w.id}
-            w={"100%"}
-            gap={"0.2rem"}
             flexDirection={"column"}
+            gap={"0.2rem"}
+            w={"100%"}
             fontSize={"1.5rem"}
           >
             <Chakra.Text

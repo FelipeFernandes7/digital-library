@@ -42,6 +42,7 @@ export function Admin() {
           maxW={{ md: "400px", base: "100%" }}
         >
           <TextField
+            h={"3rem"}
             borderRadius={"2rem"}
             variant={"unstyled"}
             bg={"transparent"}
@@ -50,6 +51,7 @@ export function Admin() {
             placeholder="Imagem do Produto"
           />
           <TextField
+            h={"3rem"}
             borderRadius={"2rem"}
             variant={"unstyled"}
             bg={"transparent"}
@@ -58,6 +60,7 @@ export function Admin() {
             placeholder="Título"
           />
           <TextField
+            h={"3rem"}
             borderRadius={"2rem"}
             variant={"unstyled"}
             bg={"transparent"}
@@ -66,6 +69,7 @@ export function Admin() {
             placeholder="Autor"
           />
           <TextField
+            h={"3rem"}
             borderRadius={"2rem"}
             variant={"unstyled"}
             bg={"transparent"}
@@ -74,6 +78,7 @@ export function Admin() {
             placeholder="Descrição"
           />
           <TextField
+            h={"3rem"}
             borderRadius={"2rem"}
             variant={"unstyled"}
             bg={"transparent"}
@@ -82,6 +87,7 @@ export function Admin() {
             placeholder="Preço"
           />
           <TextField
+            h={"3rem"}
             borderRadius={"2rem"}
             variant={"unstyled"}
             bg={"transparent"}

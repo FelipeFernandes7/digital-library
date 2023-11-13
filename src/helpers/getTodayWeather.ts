@@ -1,35 +1,25 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ClimateApiResponse, getClimate } from "../services/climate";
 
 export async function getTodayWeather(): Promise<ClimateApiResponse | null> {
   try {
     const response = await getClimate();
 
-    const { temp } = response.main;
-    const description = response.weather[0].description;
-    const main = response.weather[0].main;
-    const icon = response.weather[0].icon;
-    const id = response.weather[0].id;
+    const { main, weather } = response;
+    const { temp } = main;
+    const { description, main: weatherMain, icon, id } = weather[0];
 
     const today = new Date();
-    const options: Intl.DateTimeFormatOptions = { weekday: "long" };
-    const day = new Intl.DateTimeFormat("pt-BR", options).format(today);
+    const day = new Intl.DateTimeFormat("pt-BR", { weekday: "long" }).format(
+      today,
+    );
 
     return {
-      main: {
-        temp,
-      },
-      weather: [
-        {
-          id,
-          description,
-          main,
-          icon,
-        },
-      ],
+      main: { temp },
+      weather: [{ id, description, main: weatherMain, icon }],
       day,
     };
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
+  } catch (error: Error | any) {
     console.error("Erro ao obter a previsão do tempo:", error.message);
     return null;
   }
