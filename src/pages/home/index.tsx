@@ -136,10 +136,20 @@ export function Home() {
       gap={2}
       overflowX={"hidden"}
     >
+      <Chakra.Text
+        w={"100%"}
+        justifyContent={"flex-end"}
+        color={"white"}
+        fontWeight={700}
+        fontSize={"1.5rem"}
+        ml={{ base: "1.5rem", md: "1.5rem" }}
+      >
+        Em Alta 🔥
+      </Chakra.Text>
       <Chakra.Box
         gap={{ md: 4, base: 2 }}
         overflowX={"auto"}
-        mb={"3rem"}
+        mb={"1.5rem"}
         display={"flex"}
         justifyContent={"flex-start"}
         alignItems={"center"}
