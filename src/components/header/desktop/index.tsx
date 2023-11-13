@@ -6,7 +6,7 @@ import { MdAdminPanelSettings } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
 import { useAuth } from "../../../hooks";
 import { ModalLogin } from "../../modal/modalLogin";
-import logo from "../../../../public/book.png";
+import logo from "/book.png";
 interface HeaderDesktopProps {
   isOpen: boolean;
   onOpen: () => void;
