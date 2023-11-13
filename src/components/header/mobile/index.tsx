@@ -1,10 +1,9 @@
 import * as Chakra from "@chakra-ui/react";
-import { Link } from "react-router-dom";
 import { useAuth } from "../../../hooks";
 import { ModalLogin } from "../../modal/modalLogin";
 import { MdAdminPanelSettings } from "react-icons/md";
-import { BiSearchAlt2 } from "react-icons/bi";
 import { FiLogOut } from "react-icons/fi";
+import { getGreetingMessage } from "../../../helpers/getGreeting";
 
 interface HeaderMobileProps {
   isOpen: boolean;
@@ -17,27 +16,48 @@ export function HeaderMobile({ isOpen, onOpen, onClose }: HeaderMobileProps) {
 
   return (
     <Chakra.Flex
-      h={"15rem"}
       w={"100%"}
-      background={
-        "radial-gradient(circle at 10% 20%, rgb(255, 131, 61) 0%, rgb(249, 183, 23) 90%)"
-      }
       flexDirection={"column"}
       zIndex={"10"}
+      mt={"0.5rem"}
+      mb={"4rem"}
     >
-      <Chakra.Flex w={"100%"} justifyContent={"space-between"} p={"10px"}>
-        <Chakra.Text fontSize={"1.5rem"} fontWeight={700} color={"white"}>
-          <Link to={"/"}>Livraria Digital</Link>
-        </Chakra.Text>
+      <Chakra.Flex
+        w={"100%"}
+        alignItems={"center"}
+        justifyContent={"space-between"}
+        p={"15px"}
+      >
+        <Chakra.Flex flexDirection={"column"}>
+          <Chakra.Text
+            fontSize={"1rem"}
+            fontWeight={400}
+            color={"white"}
+            textAlign={"center"}
+          >
+            {getGreetingMessage()}
+          </Chakra.Text>
+          <Chakra.Text
+            w={"100%"}
+            fontSize={"1rem"}
+            fontWeight={700}
+            color={"white"}
+          >
+            Livraria Digital
+          </Chakra.Text>
+        </Chakra.Flex>
         <Chakra.Flex>
           {!signed ? (
             <Chakra.Button
-              color={"#f97316"}
+              color={"#ffff"}
               onClick={onOpen}
-              gap={"0.5rem"}
+              gap={"0.3rem"}
+              textAlign={"center"}
               padding={"0.5rem"}
-              borderRadius={"0.2rem"}
-              background={"white"}
+              borderRadius={"2rem"}
+              background={
+                "radial-gradient(circle at 10% 20%, rgb(255, 131, 61) 0%, rgb(249, 183, 23) 90%)"
+              }
               fontSize={"0.72rem"}
               fontWeight={700}
               transition={"all 0.3s ease"}
@@ -80,37 +100,6 @@ export function HeaderMobile({ isOpen, onOpen, onClose }: HeaderMobileProps) {
           <ModalLogin isOpen={isOpen} onClose={onClose} />
         </Chakra.Flex>
       </Chakra.Flex>
-      <Chakra.Box
-        display={"flex"}
-        flexDirection={"column"}
-        w={"100%"}
-        p={"10px"}
-      >
-        <Chakra.Flex
-          mt={"2rem"}
-          bg={"white"}
-          borderRadius={"0.5rem"}
-          border={"1px solid white"}
-          w={"100%"}
-          pl={"10px"}
-        >
-          <Chakra.Input
-            color={"black"}
-            variant={"unstyled"}
-            placeholder="Pesquisar"
-          />
-          <Chakra.Button bg={"transparent"}>
-            <Chakra.Icon
-              as={BiSearchAlt2}
-              fontSize={"1.5rem"}
-              _active={{
-                transition: "all 0.3s ease",
-                transform: "scale(0.95)",
-              }}
-            />
-          </Chakra.Button>
-        </Chakra.Flex>
-      </Chakra.Box>
     </Chakra.Flex>
   );
 }

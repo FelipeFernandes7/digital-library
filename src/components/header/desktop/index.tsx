@@ -1,12 +1,12 @@
 import * as Chakra from "@chakra-ui/react";
 
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { MdAdminPanelSettings } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
 import { useAuth } from "../../../hooks";
 import { ModalLogin } from "../../modal/modalLogin";
-
+import logo from "../../../../public/book.png";
 interface HeaderDesktopProps {
   isOpen: boolean;
   onOpen: () => void;
@@ -17,6 +17,7 @@ export function HeaderDesktop({ isOpen, onOpen, onClose }: HeaderDesktopProps) {
   const signed = !!user;
   const location = useLocation();
   const path = location.pathname;
+  const navigate = useNavigate();
 
   return (
     <Chakra.Flex
@@ -25,9 +26,12 @@ export function HeaderDesktop({ isOpen, onOpen, onClose }: HeaderDesktopProps) {
       p={"1rem"}
       alignItems={"center"}
       justifyContent={"space-between"}
-      bg={"#e5e7eb"}
     >
       <Chakra.Text
+        w={"100%"}
+        gap={2}
+        display={"flex"}
+        alignItems={"center"}
         fontSize={"1.5rem"}
         fontWeight={700}
         bg={"rgb(255, 131, 61)"}
@@ -39,34 +43,48 @@ export function HeaderDesktop({ isOpen, onOpen, onClose }: HeaderDesktopProps) {
           WebkitTextFillColor: "transparent",
         }}
       >
+        <Link to={"/"}>
+          <Chakra.Image h={50} w={50} objectFit={"cover"} src={logo} />
+        </Link>
         <Link to={"/"}>Livraria Digital</Link>
       </Chakra.Text>
       {signed && (
-        <Chakra.Text
+        <Chakra.Button
+          onClick={() => navigate("/admin")}
+          w={"30%"}
+          background={
+            path === "/admin"
+              ? "transparent"
+              : "radial-gradient(circle at 10% 20%, rgb(255, 131, 61) 0%, rgb(249, 183, 23) 90%)"
+          }
           display={"flex"}
-          alignItems={"center"}
           justifyContent={"center"}
+          alignItems={"center"}
+          color={path === "/admin" ? " rgb(249, 183, 23)" : "none"}
           fontSize={"1rem"}
           fontWeight={700}
-          textDecoration={
-            path === "/admin" ? "underline rgb(255, 131, 61)" : "none"
-          }
+          borderRadius={"2rem"}
+          border={path === "/admin" ? "1px solid  rgb(249, 183, 23)" : "none"}
           _hover={{
+            opacity: 0.9,
+          }}
+          _active={{
             transition: "all 0.3s ease",
-            color: "rgb(249, 183, 23)",
+            transform: "scale(0.95)",
           }}
         >
-          <Link to={"/admin"}>Admin</Link>
-        </Chakra.Text>
+          Área Admin
+        </Chakra.Button>
       )}
-      <Chakra.Flex>
+
+      <Chakra.Flex w={"100%"} justifyContent={"flex-end"}>
         {!signed ? (
           <Chakra.Button
             color={"white"}
             onClick={onOpen}
             gap={"0.5rem"}
             padding={"0.5rem"}
-            borderRadius={"0.2rem"}
+            borderRadius={"2rem"}
             background={
               "radial-gradient(circle at 10% 20%, rgb(255, 131, 61) 0%, rgb(249, 183, 23) 90%)"
             }
@@ -90,7 +108,7 @@ export function HeaderDesktop({ isOpen, onOpen, onClose }: HeaderDesktopProps) {
             onClick={logOut}
             gap={"0.5rem"}
             padding={"0.5rem"}
-            borderRadius={"0.2rem"}
+            borderRadius={{ base: "1rem", md: "2rem" }}
             background={
               "radial-gradient(circle at 10% 20%, rgb(255, 131, 61) 0%, rgb(249, 183, 23) 90%)"
             }

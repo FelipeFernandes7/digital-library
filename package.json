@@ -15,6 +15,7 @@
     "@emotion/styled": "^11.11.0",
     "@hookform/resolvers": "^3.3.2",
     "@types/styled-components": "^5.1.30",
+    "date-fns": "^2.30.0",
     "firebase": "^10.6.0",
     "framer-motion": "^10.16.4",
     "localforage": "^1.10.0",

@@ -68,10 +68,12 @@ export function ModalLogin({ isOpen, onClose }: ModalLoginProps) {
       onClose={onClose}
     >
       <Chakra.ModalOverlay />
-      <Chakra.ModalContent bg={"#181818"}>
+      <Chakra.ModalContent bg={"#27272a"} borderRadius={"1.5rem"}>
         <Chakra.ModalHeader
+          w={"100%"}
           fontWeight={700}
           bg={"rgb(255, 131, 61)"}
+          textAlign={"center"}
           backgroundImage={
             "radial-gradient(circle at 10% 20%, rgb(255, 131, 61) 0%, rgb(249, 183, 23) 90%)"
           }
@@ -88,6 +90,9 @@ export function ModalLogin({ isOpen, onClose }: ModalLoginProps) {
             <Chakra.FormControl>
               <Chakra.FormLabel>E-mail</Chakra.FormLabel>
               <TextField
+                borderColor={"#181818"}
+                borderRadius={"2rem"}
+                type="email"
                 name="email"
                 register={register}
                 placeholder="example@gmail.com"
@@ -98,6 +103,8 @@ export function ModalLogin({ isOpen, onClose }: ModalLoginProps) {
             <Chakra.FormControl mt={4}>
               <Chakra.FormLabel>Senha</Chakra.FormLabel>
               <TextField
+                borderColor={"#181818"}
+                borderRadius={"2rem"}
                 type="password"
                 name="password"
                 register={register}
@@ -108,14 +115,15 @@ export function ModalLogin({ isOpen, onClose }: ModalLoginProps) {
           </Chakra.ModalBody>
 
           <Chakra.ModalFooter
-            w={"full"}
+            w={"100%"}
             display={"flex"}
             justifyContent={"center"}
             alignItems={"center"}
           >
             <Chakra.Button
               type="submit"
-              mr={3}
+              mt={3}
+              borderRadius={"2rem"}
               w={"full"}
               color={"white"}
               backgroundImage={
