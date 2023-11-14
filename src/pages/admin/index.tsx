@@ -36,7 +36,7 @@ export function Admin() {
   async function handleOnSubmit(formValues: FormData) {
     const { title, author, price, image, description } = formValues;
     console.log(formValues);
-    const productRef = ref(database, `records/${user?.uid}/products`);
+    const productRef = ref(database, `records/products`);
     await push(productRef, {
       id: uuid(),
       title,
@@ -44,6 +44,7 @@ export function Admin() {
       price,
       image,
       description,
+      registeredBy: user?.uid,
       isBestSeller: bestSeller,
     })
       .then(() => {
