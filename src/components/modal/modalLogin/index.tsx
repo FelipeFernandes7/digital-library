@@ -3,10 +3,10 @@ import { useMediaQuery } from "@chakra-ui/react";
 import { TextField } from "../../textfield";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../hooks";
+import { z } from "zod";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 interface ModalLoginProps {
@@ -43,6 +43,10 @@ export function ModalLogin({ isOpen, onClose }: ModalLoginProps) {
       .then(() => {
         toast.success("Login efetuado com sucesso", {
           position: "top-center",
+          style: {
+            background: "#232323",
+            color: "#fff",
+          },
         });
 
         setIsLoading(false);

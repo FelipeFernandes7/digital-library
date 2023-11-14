@@ -6,6 +6,7 @@ import { RouterProvider } from "react-router-dom";
 import { GlobalStyles } from "./styles.ts";
 import { AuthProvider } from "./context/AuthContext.tsx";
 import { Toaster } from "react-hot-toast";
+import { ProductProvider } from "./context/ProductContext.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -13,7 +14,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <GlobalStyles />
       <ChakraProvider>
         <Toaster position="top-center" reverseOrder={false} />
-        <RouterProvider router={router} />
+        <ProductProvider>
+          <RouterProvider router={router} />
+        </ProductProvider>
       </ChakraProvider>
     </AuthProvider>
   </React.StrictMode>,

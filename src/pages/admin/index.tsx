@@ -2,12 +2,70 @@ import * as Chakra from "@chakra-ui/react";
 import { Temperature } from "../../components/temperature";
 import { TextField } from "../../components/textfield";
 import { useState } from "react";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { push, ref } from "firebase/database";
+import { database } from "../../services";
+import { useAuth } from "../../hooks";
+import { v4 as uuid } from "uuid";
+import toast from "react-hot-toast";
 
 export function Admin() {
-  const [bestSeller, setBestSeller] = useState({
-    yes: false,
-    no: false,
+  const { user } = useAuth();
+  const [bestSeller, setBestSeller] = useState(false);
+
+  const schema = z.object({
+    title: z.string().nonempty("O campo título é obrigatório"),
+    author: z.string().nonempty("O campo autor é obrigatório"),
+    price: z.number(),
+    description: z.string().nonempty("O campo descrição é obrigatório"),
+    image: z.string().nonempty("O campo imagem é obrigatório"),
   });
+  type FormData = z.infer<typeof schema>;
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(schema),
+    mode: "onChange",
+  });
+
+  async function handleOnSubmit(formValues: FormData) {
+    const { title, author, price, image, description } = formValues;
+    console.log(formValues);
+    const productRef = ref(database, `records/${user?.uid}/products`);
+    await push(productRef, {
+      id: uuid(),
+      title,
+      author,
+      price,
+      image,
+      description,
+      isBestSeller: bestSeller,
+    })
+      .then(() => {
+        toast.success("Produto cadastrado com sucesso!", {
+          position: "top-center",
+          style: {
+            background: "#232323",
+            color: "#fff",
+          },
+        });
+      })
+      .catch((error) => {
+        toast.error(error.message, {
+          position: "top-center",
+          style: {
+            background: "#232323",
+            color: "#fff",
+          },
+        });
+      });
+  }
+
   return (
     <Chakra.Flex w={"100%"} flexDirection={"column"} alignItems={"center"}>
       <Chakra.Flex
@@ -21,6 +79,7 @@ export function Admin() {
       <Chakra.Box
         as="form"
         mt={"1rem"}
+        onSubmit={handleSubmit(handleOnSubmit)}
         display={"flex"}
         flexDirection={"column"}
         justifyContent={"center"}
@@ -48,6 +107,8 @@ export function Admin() {
         >
           <TextField
             label="Link da Imagem do Produto"
+            name="image"
+            register={register}
             h={"3rem"}
             borderRadius={"2rem"}
             variant={"unstyled"}
@@ -55,76 +116,86 @@ export function Admin() {
             border={"1px solid #525252"}
             w={"full"}
             placeholder="Link da Imagem do Produto"
+            error={errors.image}
           />
           <TextField
+            h={"3rem"}
+            w={"full"}
             label="Título"
-            h={"3rem"}
+            name="title"
+            register={register}
             borderRadius={"2rem"}
             variant={"unstyled"}
             bg={"transparent"}
             border={"1px solid #525252"}
-            w={"full"}
             placeholder="Título"
+            error={errors.title}
           />
           <TextField
+            h={"3rem"}
+            w={"full"}
             label="Autor"
-            h={"3rem"}
+            name="author"
+            register={register}
             borderRadius={"2rem"}
             variant={"unstyled"}
             bg={"transparent"}
             border={"1px solid #525252"}
-            w={"full"}
             placeholder="Autor"
+            error={errors.author}
           />
           <TextField
+            h={"3rem"}
+            w={"full"}
             label="Descrição"
-            h={"3rem"}
+            name="description"
+            register={register}
             borderRadius={"2rem"}
             variant={"unstyled"}
             bg={"transparent"}
             border={"1px solid #525252"}
-            w={"full"}
             placeholder="Descrição"
+            error={errors.description}
           />
           <TextField
-            label="Preço"
             h={"3rem"}
+            w={"full"}
+            type="number"
+            label="Preço"
+            name="price"
+            register={register}
             borderRadius={"2rem"}
             variant={"unstyled"}
             bg={"transparent"}
             border={"1px solid #525252"}
-            w={"full"}
             placeholder="Preço"
+            error={errors.price}
           />
           <Chakra.Box display={"flex"} w={"100%"} flexDirection={"column"}>
             <Chakra.Text>Produto está em Alta?</Chakra.Text>
             <Chakra.Flex
-              alignItems={"center"}
-              gap={"0.5rem"}
               w={"100%"}
               mt={"0.5rem"}
+              gap={"0.5rem"}
+              alignItems={"center"}
             >
               <Chakra.Button
                 w={"100%"}
-                onClick={() =>
-                  setBestSeller({ no: false, yes: !bestSeller.yes })
-                }
+                onClick={() => setBestSeller(true)}
                 variant={"unstyled"}
                 borderRadius={"2rem"}
-                border={!bestSeller.yes ? "1px solid #22c55e" : "none"}
-                bg={bestSeller.yes ? "#22c55e" : "transparent"}
+                border={!bestSeller ? "1px solid #22c55e" : "none"}
+                bg={bestSeller ? "#22c55e" : "transparent"}
               >
                 Sim
               </Chakra.Button>
               <Chakra.Button
                 w={"100%"}
-                onClick={() =>
-                  setBestSeller({ no: !bestSeller.no, yes: false })
-                }
+                onClick={() => setBestSeller(false)}
                 variant={"unstyled"}
                 borderRadius={"2rem"}
-                bg={bestSeller.no ? "#e11d48" : "none"}
-                border={!bestSeller.no ? "1px solid #e11d48" : "none"}
+                bg={!bestSeller ? "#e11d48" : "none"}
+                border={bestSeller ? "1px solid #e11d48" : "none"}
               >
                 Não
               </Chakra.Button>
@@ -132,6 +203,7 @@ export function Admin() {
           </Chakra.Box>
 
           <Chakra.Button
+            type="submit"
             w={"100%"}
             h={"2.7rem"}
             color={"white"}
