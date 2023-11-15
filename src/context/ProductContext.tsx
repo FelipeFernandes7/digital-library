@@ -10,7 +10,7 @@ interface ProductContextType {
 interface ProductProviderProps {
   children: ReactNode;
 }
-interface ProductProps {
+export interface ProductProps {
   id: string;
   title: string;
   author: string;
@@ -19,6 +19,7 @@ interface ProductProps {
   description: string;
   isBestSeller: boolean;
   registeredBy: string;
+  registeredIn: string;
 }
 export const ProductContext = createContext({} as ProductContextType);
 
@@ -44,6 +45,7 @@ export function ProductProvider({ children }: ProductProviderProps) {
               description: value.description,
               isBestSeller: value.isBestSeller,
               registeredBy: value.registeredBy,
+              registeredIn: value.registeredIn,
             }),
           );
           setProduct(parsedProducts);

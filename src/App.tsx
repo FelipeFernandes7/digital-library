@@ -4,6 +4,7 @@ import { Layout } from "./components/layout";
 import { Private } from "./components/private";
 import { Admin } from "./pages/admin";
 import { Error } from "./pages/error";
+import { Records } from "./pages/records";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,14 @@ const router = createBrowserRouter([
         element: (
           <Private>
             <Admin />
+          </Private>
+        ),
+      },
+      {
+        path: "/records",
+        element: (
+          <Private>
+            <Records />
           </Private>
         ),
       },

@@ -3,8 +3,9 @@ import { useAuth } from "../../../hooks";
 import { ModalLogin } from "../../modal/modalLogin";
 import { MdAdminPanelSettings } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
-import { getGreetingMessage } from "../../../helpers/getGreeting";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { FaListUl } from "react-icons/fa";
+import { FaBookOpen } from "react-icons/fa6";
 
 interface HeaderMobileProps {
   isOpen: boolean;
@@ -18,13 +19,17 @@ export function HeaderMobile({ isOpen, onOpen, onClose }: HeaderMobileProps) {
   const path = location.pathname;
   const signed = !!user;
   const isAdmin = path === "/admin";
+  const isRecords = path === "/records";
   return (
     <Chakra.Flex
       w={"100%"}
       flexDirection={"column"}
+      position={"fixed"}
+      bottom={0}
       zIndex={"10"}
       mt={"0.5rem"}
-      mb={"1.5rem"}
+      bg={"#18181b"}
+      boxShadow={"rgba(0, 0, 0, 0.1) 0px 4px 12px"}
     >
       <Chakra.Flex
         w={"100%"}
@@ -32,39 +37,46 @@ export function HeaderMobile({ isOpen, onOpen, onClose }: HeaderMobileProps) {
         justifyContent={"space-between"}
         p={"15px"}
       >
-        <Chakra.Flex flexDirection={"column"}>
-          <Chakra.Text
-            fontSize={"1rem"}
-            fontWeight={400}
-            color={"white"}
-            textAlign={"center"}
-          >
-            {getGreetingMessage()}
-          </Chakra.Text>
-          <Chakra.Text
-            onClick={() => navigate("/")}
-            w={"100%"}
-            fontSize={"1rem"}
-            fontWeight={700}
-            color={"white"}
-            cursor={"pointer"}
-          >
-            Livraria Digital
-          </Chakra.Text>
-        </Chakra.Flex>
+        <Link to={"/"} style={{ display: "flex", alignItems: "center" }}>
+          <Chakra.Icon as={FaBookOpen} fontSize={"2rem"} color={"#fff"} />
+        </Link>
         {signed && (
-          <Chakra.Box cursor={"pointer"}>
-            <Chakra.Icon
-              onClick={() => navigate("/admin")}
-              color={isAdmin ? "rgb(249, 183, 23) " : "white"}
-              as={MdAdminPanelSettings}
-              fontSize={"2rem"}
-              _hover={{
-                transition: "all 0.3s ease",
-                opacity: 0.8,
-              }}
-            />
-          </Chakra.Box>
+          <Chakra.Flex width={"100%"} justifyContent={"space-evenly"}>
+            <Chakra.Box
+              cursor={"pointer"}
+              display={"flex"}
+              alignItems={"center"}
+              justifyContent={"center"}
+            >
+              <Chakra.Icon
+                onClick={() => navigate("/admin")}
+                color={isAdmin ? "rgb(249, 183, 23) " : "white"}
+                as={MdAdminPanelSettings}
+                fontSize={"2rem"}
+                _hover={{
+                  transition: "all 0.3s ease",
+                  opacity: 0.8,
+                }}
+              />
+            </Chakra.Box>
+            <Chakra.Box
+              cursor={"pointer"}
+              display={"flex"}
+              alignItems={"center"}
+              justifyContent={"center"}
+            >
+              <Chakra.Icon
+                onClick={() => navigate("/records")}
+                color={isRecords ? "rgb(249, 183, 23) " : "white"}
+                as={FaListUl}
+                fontSize={"1.5rem"}
+                _hover={{
+                  transition: "all 0.3s ease",
+                  opacity: 0.8,
+                }}
+              />
+            </Chakra.Box>
+          </Chakra.Flex>
         )}
         <Chakra.Flex>
           {!signed ? (

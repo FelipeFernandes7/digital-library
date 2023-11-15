@@ -10,9 +10,12 @@ import { database } from "../../services";
 import { useAuth } from "../../hooks";
 import { v4 as uuid } from "uuid";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { getGreetingMessage } from "../../helpers/getGreeting";
 
 export function Admin() {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [bestSeller, setBestSeller] = useState(false);
 
   const schema = z.object({
@@ -46,6 +49,7 @@ export function Admin() {
       description,
       registeredBy: user?.uid,
       isBestSeller: bestSeller,
+      registeredIn: new Date().toISOString(),
     })
       .then(() => {
         toast.success("Produto cadastrado com sucesso!", {
@@ -55,6 +59,7 @@ export function Admin() {
             color: "#fff",
           },
         });
+        navigate("/");
       })
       .catch((error) => {
         toast.error(error.message, {
@@ -68,14 +73,34 @@ export function Admin() {
   }
 
   return (
-    <Chakra.Flex w={"100%"} flexDirection={"column"} alignItems={"center"}>
+    <Chakra.Flex
+      w={"100%"}
+      mb={{ base: "5rem", md: "0" }}
+      flexDirection={"column"}
+      alignItems={"center"}
+    >
       <Chakra.Flex
         w={"100%"}
-        justifyContent={"flex-start"}
+        justifyContent={"flex-end"}
         pl={"2rem"}
+        pt={"2rem"}
+        gap={"1rem"}
         mt={{ md: "1.5rem", base: "0" }}
       >
-        <Temperature />
+        <Chakra.Flex w={"100%"} flexDirection={"column"}>
+          <Chakra.Text
+            w={"100%"}
+            display={"flex"}
+            justifyContent={"flex-start"}
+            fontSize={"1.5rem"}
+            fontWeight={400}
+            color={"white"}
+            textAlign={"center"}
+          >
+            {getGreetingMessage()}
+          </Chakra.Text>
+          <Temperature />
+        </Chakra.Flex>
       </Chakra.Flex>
       <Chakra.Box
         as="form"

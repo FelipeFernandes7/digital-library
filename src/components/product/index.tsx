@@ -19,7 +19,7 @@ export function Product({
     <Chakra.Box
       transition={"all 0.3s ease"}
       bg={{ md: "#27272a", base: "none" }}
-      w={{ base: "100%", md: "400px" }}
+      w={{ base: "100%", md: "350px" }}
       h={{ base: "10rem auto", md: "auto" }}
       p={{ base: "10px", md: "0" }}
       display={"flex"}
@@ -43,9 +43,14 @@ export function Product({
           alt="Livro"
           src={image}
           borderRadius={{ base: "1rem", md: "2rem 2rem 0 0" }}
-          objectFit={"cover"}
+          objectFit={{ base: "cover", md: "cover" }}
           w={{ base: 120, md: "100%" }}
           h={{ base: 120, md: "200px" }}
+          _hover={{
+            objectFit: { md: "scale-down", base: "cover" },
+            transform: { md: "scale(1.1)", base: "none" },
+            transition: "all 0.3s ease",
+          }}
         />
         <Chakra.Flex flexDirection={"column"} p={"15px"} w={"100%"} h={"100%"}>
           {bestSeller && (

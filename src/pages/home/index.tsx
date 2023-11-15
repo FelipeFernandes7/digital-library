@@ -8,6 +8,8 @@ export function Home() {
   const bestSellers = product.filter((book) => book.isBestSeller);
   return (
     <Chakra.Flex
+      w={"100%"}
+      mb={{ base: "5rem", md: "0" }}
       borderTopRadius={"1rem"}
       flexDirection={"column"}
       alignItems={"center"}
@@ -18,7 +20,9 @@ export function Home() {
     >
       <Chakra.Text
         w={"100%"}
-        justifyContent={"flex-end"}
+        display={"flex"}
+        alignItems={{ base: "flex-start", md: "center" }}
+        justifyContent={{ base: "flex-start", md: "center" }}
         color={"white"}
         fontWeight={700}
         fontSize={"1.5rem"}
@@ -52,13 +56,15 @@ export function Home() {
             w={"100%"}
             h={"100%"}
           >
-            <Chakra.Spinner color="white" fontSize={"2rem"} />
+            <Chakra.Spinner color="white" fontSize={"x-large"} />
           </Chakra.Flex>
         )}
       </Chakra.Box>
       <Chakra.Text
         w={"100%"}
-        justifyContent={"flex-end"}
+        display={"flex"}
+        alignItems={{ base: "flex-start", md: "center" }}
+        justifyContent={{ base: "flex-start", md: "center" }}
         color={"white"}
         fontWeight={700}
         fontSize={"1.5rem"}

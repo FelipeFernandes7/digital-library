@@ -2,10 +2,11 @@ import * as Chakra from "@chakra-ui/react";
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-import { MdAdminPanelSettings } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
 import { useAuth } from "../../../hooks";
 import { ModalLogin } from "../../modal/modalLogin";
+import { MdAdminPanelSettings } from "react-icons/md";
+import { FaListUl } from "react-icons/fa";
 import logo from "/book.png";
 interface HeaderDesktopProps {
   isOpen: boolean;
@@ -19,6 +20,7 @@ export function HeaderDesktop({ isOpen, onOpen, onClose }: HeaderDesktopProps) {
   const path = location.pathname;
   const navigate = useNavigate();
   const isAdmin = path === "/admin";
+  const isRecords = path === "/records";
   return (
     <Chakra.Flex
       w={"100%"}
@@ -49,23 +51,42 @@ export function HeaderDesktop({ isOpen, onOpen, onClose }: HeaderDesktopProps) {
         <Link to={"/"}>Livraria Digital</Link>
       </Chakra.Text>
       {signed && (
-        <Chakra.Box
-          cursor={"pointer"}
-          display={"flex"}
-          alignItems={"center"}
-          justifyContent={"center"}
-        >
-          <Chakra.Icon
-            onClick={() => navigate("/admin")}
-            color={isAdmin ? "rgb(249, 183, 23) " : "white"}
-            as={MdAdminPanelSettings}
-            fontSize={"2.5rem"}
-            _hover={{
-              transition: "all 0.3s ease",
-              opacity: 0.8,
-            }}
-          />
-        </Chakra.Box>
+        <Chakra.Flex width={"100%"} justifyContent={"space-evenly"}>
+          <Chakra.Box
+            cursor={"pointer"}
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+          >
+            <Chakra.Icon
+              onClick={() => navigate("/admin")}
+              color={isAdmin ? "rgb(249, 183, 23) " : "white"}
+              as={MdAdminPanelSettings}
+              fontSize={"2.5rem"}
+              _hover={{
+                transition: "all 0.3s ease",
+                opacity: 0.8,
+              }}
+            />
+          </Chakra.Box>
+          <Chakra.Box
+            cursor={"pointer"}
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+          >
+            <Chakra.Icon
+              onClick={() => navigate("/records")}
+              color={isRecords ? "rgb(249, 183, 23) " : "white"}
+              as={FaListUl}
+              fontSize={"1.5rem"}
+              _hover={{
+                transition: "all 0.3s ease",
+                opacity: 0.8,
+              }}
+            />
+          </Chakra.Box>
+        </Chakra.Flex>
       )}
 
       <Chakra.Flex w={"100%"} justifyContent={"flex-end"}>
