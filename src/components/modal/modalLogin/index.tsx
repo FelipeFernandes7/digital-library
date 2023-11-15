@@ -70,6 +70,7 @@ export function ModalLogin({ isOpen, onClose }: ModalLoginProps) {
       size={isMobile ? "xs" : "md"}
       isOpen={isOpen}
       onClose={onClose}
+      motionPreset={isMobile ? "slideInBottom" : "slideInRight"}
     >
       <Chakra.ModalOverlay />
       <Chakra.ModalContent bg={"#27272a"} borderRadius={"1.5rem"}>
