@@ -21,6 +21,7 @@ export function HeaderDesktop({ isOpen, onOpen, onClose }: HeaderDesktopProps) {
   const navigate = useNavigate();
   const isAdmin = path === "/admin";
   const isRecords = path === "/records";
+  const isHome = path === "/";
   return (
     <Chakra.Flex
       w={"100%"}
@@ -46,7 +47,11 @@ export function HeaderDesktop({ isOpen, onOpen, onClose }: HeaderDesktopProps) {
         }}
       >
         <Link to={"/"} style={{ display: "flex", alignItems: "center" }}>
-          <Chakra.Icon as={FaBookOpen} fontSize={"2rem"} color={"#fff"} />
+          <Chakra.Icon
+            as={FaBookOpen}
+            fontSize={"2rem"}
+            color={isHome ? "rgb(249, 183, 23) " : "#fff"}
+          />
         </Link>
         <Link to={"/"}>Livraria Digital</Link>
       </Chakra.Text>

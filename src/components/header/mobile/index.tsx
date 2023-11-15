@@ -20,6 +20,7 @@ export function HeaderMobile({ isOpen, onOpen, onClose }: HeaderMobileProps) {
   const signed = !!user;
   const isAdmin = path === "/admin";
   const isRecords = path === "/records";
+  const isHome = path === "/";
   return (
     <Chakra.Flex
       w={"100%"}
@@ -38,7 +39,11 @@ export function HeaderMobile({ isOpen, onOpen, onClose }: HeaderMobileProps) {
         p={"15px"}
       >
         <Link to={"/"} style={{ display: "flex", alignItems: "center" }}>
-          <Chakra.Icon as={FaBookOpen} fontSize={"2rem"} color={"#fff"} />
+          <Chakra.Icon
+            as={FaBookOpen}
+            fontSize={"2rem"}
+            color={isHome ? "rgb(249, 183, 23) " : "#fff"}
+          />
         </Link>
         {signed && (
           <Chakra.Flex width={"100%"} justifyContent={"space-evenly"}>
