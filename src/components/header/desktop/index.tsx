@@ -7,7 +7,7 @@ import { useAuth } from "../../../hooks";
 import { ModalLogin } from "../../modal/modalLogin";
 import { MdAdminPanelSettings } from "react-icons/md";
 import { FaListUl } from "react-icons/fa";
-import logo from "/book.png";
+import { FaBookOpen } from "react-icons/fa6";
 interface HeaderDesktopProps {
   isOpen: boolean;
   onOpen: () => void;
@@ -45,8 +45,8 @@ export function HeaderDesktop({ isOpen, onOpen, onClose }: HeaderDesktopProps) {
           WebkitTextFillColor: "transparent",
         }}
       >
-        <Link to={"/"}>
-          <Chakra.Image h={50} w={50} objectFit={"cover"} src={logo} />
+        <Link to={"/"} style={{ display: "flex", alignItems: "center" }}>
+          <Chakra.Icon as={FaBookOpen} fontSize={"2rem"} color={"#fff"} />
         </Link>
         <Link to={"/"}>Livraria Digital</Link>
       </Chakra.Text>
