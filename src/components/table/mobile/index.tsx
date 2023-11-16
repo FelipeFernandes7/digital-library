@@ -6,12 +6,14 @@ import { ptBR } from "date-fns/locale";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { formatPrice } from "../../../helpers";
+import { AlertModal } from "../../modal/alert";
 
 interface TableMobileProps {
   products: ProductProps[];
 }
 
 export function TableMobile({ products }: TableMobileProps) {
+  const { onOpen, isOpen, onClose } = Chakra.useDisclosure();
   return (
     <Chakra.Flex flexDirection={"column"} w={"100%"} p={"10px"} gap={3}>
       {products.map((product) => (
@@ -91,6 +93,7 @@ export function TableMobile({ products }: TableMobileProps) {
             </Chakra.Button>
             <Chakra.Button
               p={0}
+              onClick={onOpen}
               variant={"unstyled"}
               bg={"none"}
               cursor={"pointer"}
@@ -113,6 +116,7 @@ export function TableMobile({ products }: TableMobileProps) {
           </Chakra.Flex>
         </Chakra.Box>
       ))}
+      <AlertModal isOpen={isOpen} onClose={onClose} />
     </Chakra.Flex>
   );
 }
