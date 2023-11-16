@@ -20,7 +20,7 @@ export function TableMobile({ products }: TableMobileProps) {
           w={"100%"}
           p={"10px"}
           display={"flex"}
-          bg={"#27272a"}
+          bg={"#0f172a"}
           borderRadius={"1rem"}
           boxShadow={" rgba(0, 0, 0, 0.1) 0px 4px 12px"}
         >

@@ -29,7 +29,8 @@ export function HeaderMobile({ isOpen, onOpen, onClose }: HeaderMobileProps) {
       bottom={0}
       zIndex={"10"}
       mt={"0.5rem"}
-      bg={"#18181b"}
+      bg={"#0f172a"}
+      borderTopRadius={"1rem"}
       boxShadow={"rgba(0, 0, 0, 0.1) 0px 4px 12px"}
     >
       <Chakra.Flex

@@ -110,7 +110,7 @@ export function Admin() {
         flexDirection={"column"}
         justifyContent={"center"}
         alignItems={"center"}
-        bg={{ md: "#27272a", base: "none" }}
+        bg={{ md: "#0f172a", base: "none" }}
         borderRadius={"2rem"}
         width={{ md: "650px", base: "100%" }}
         mb={{ md: "1rem", base: "0" }}

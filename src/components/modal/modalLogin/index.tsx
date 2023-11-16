@@ -44,7 +44,7 @@ export function ModalLogin({ isOpen, onClose }: ModalLoginProps) {
         toast.success("Login efetuado com sucesso", {
           position: "top-center",
           style: {
-            background: "#232323",
+            background: "#1f2937",
             color: "#fff",
           },
         });
@@ -57,7 +57,7 @@ export function ModalLogin({ isOpen, onClose }: ModalLoginProps) {
         toast.error(error.message, {
           position: "top-center",
           style: {
-            background: "#232323",
+            background: "#1f2937",
             color: "#fff",
           },
         });
@@ -73,7 +73,7 @@ export function ModalLogin({ isOpen, onClose }: ModalLoginProps) {
       motionPreset={isMobile ? "slideInBottom" : "slideInRight"}
     >
       <Chakra.ModalOverlay />
-      <Chakra.ModalContent bg={"#27272a"} borderRadius={"1.5rem"}>
+      <Chakra.ModalContent bg={"#0f172a"} borderRadius={"1.5rem"}>
         <Chakra.ModalHeader
           w={"100%"}
           fontWeight={700}
@@ -95,7 +95,7 @@ export function ModalLogin({ isOpen, onClose }: ModalLoginProps) {
             <Chakra.FormControl>
               <Chakra.FormLabel>E-mail</Chakra.FormLabel>
               <TextField
-                borderColor={"#181818"}
+                borderColor={"#ffff"}
                 borderRadius={"2rem"}
                 type="email"
                 name="email"
@@ -108,7 +108,7 @@ export function ModalLogin({ isOpen, onClose }: ModalLoginProps) {
             <Chakra.FormControl mt={4}>
               <Chakra.FormLabel>Senha</Chakra.FormLabel>
               <TextField
-                borderColor={"#181818"}
+                borderColor={"#ffff"}
                 borderRadius={"2rem"}
                 type="password"
                 name="password"

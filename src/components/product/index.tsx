@@ -18,7 +18,7 @@ export function Product({
   return (
     <Chakra.Box
       transition={"all 0.3s ease"}
-      bg={{ md: "#27272a", base: "none" }}
+      bg={{ md: "#111827", base: "none" }}
       w={{ base: "100%", md: "350px" }}
       h={{ base: "10rem auto", md: "auto" }}
       p={{ base: "10px", md: "0" }}
@@ -92,7 +92,7 @@ export function Product({
             fontSize={{ base: "0.8rem", md: "1rem" }}
             fontWeight={500}
             whiteSpace={"pre-wrap"}
-            color={"#525252"}
+            color={"#52323"}
           >
             {author}
           </Chakra.Text>

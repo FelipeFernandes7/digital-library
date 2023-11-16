@@ -36,7 +36,7 @@ export function TextField({
       {register && name ? (
         <ChakraInput
           p={"10px"}
-          border={"2px solid #232323"}
+          border={"1px solid #232323"}
           variant={"unstyled"}
           placeholder={placeholder}
           outline={"none"}
