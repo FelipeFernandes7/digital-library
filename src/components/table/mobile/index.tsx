@@ -7,6 +7,8 @@ import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { formatPrice } from "../../../helpers";
 import { AlertModal } from "../../modal/alert";
+import { useState } from "react";
+import { useProduct } from "../../../hooks";
 
 interface TableMobileProps {
   products: ProductProps[];
@@ -14,6 +16,23 @@ interface TableMobileProps {
 
 export function TableMobile({ products }: TableMobileProps) {
   const { onOpen, isOpen, onClose } = Chakra.useDisclosure();
+  const { deleteProduct } = useProduct();
+  const [productId, setProductId] = useState("");
+
+  async function handleDeleteProduct(id: string) {
+    try {
+      await deleteProduct(id);
+      setProductId("");
+      onClose();
+    } catch (error) {
+      console.error("Error handling deleteProduct:", error);
+    }
+  }
+
+  function handleOpen(id: string) {
+    setProductId(id);
+    onOpen();
+  }
   return (
     <Chakra.Flex flexDirection={"column"} w={"100%"} p={"10px"} gap={3}>
       {products.map((product) => (
@@ -93,7 +112,7 @@ export function TableMobile({ products }: TableMobileProps) {
             </Chakra.Button>
             <Chakra.Button
               p={0}
-              onClick={onOpen}
+              onClick={() => handleOpen(product.id)}
               variant={"unstyled"}
               bg={"none"}
               cursor={"pointer"}
@@ -116,7 +135,11 @@ export function TableMobile({ products }: TableMobileProps) {
           </Chakra.Flex>
         </Chakra.Box>
       ))}
-      <AlertModal isOpen={isOpen} onClose={onClose} />
+      <AlertModal
+        isOpen={isOpen}
+        onClose={onClose}
+        deleteProduct={() => handleDeleteProduct(productId)}
+      />
     </Chakra.Flex>
   );
 }

@@ -1,10 +1,20 @@
 import * as Chakra from "@chakra-ui/react";
 import { IoAlertCircle } from "react-icons/io5";
+import { useParams } from "react-router-dom";
+
 interface AlertModalProps {
   isOpen: boolean;
   onClose: () => void;
+  deleteProduct: (id: string) => void;
 }
-export function AlertModal({ isOpen, onClose }: AlertModalProps) {
+export function AlertModal({
+  isOpen,
+  onClose,
+  deleteProduct,
+}: AlertModalProps) {
+  const { id } = useParams();
+  const productId = String(id);
+
   return (
     <Chakra.Modal
       size={{ base: "xs", md: "md" }}
@@ -57,6 +67,7 @@ export function AlertModal({ isOpen, onClose }: AlertModalProps) {
           </Chakra.Button>
           <Chakra.Button
             w={"100%"}
+            onClick={() => deleteProduct(productId)}
             color={"#fff"}
             borderRadius={"1rem"}
             _active={{
