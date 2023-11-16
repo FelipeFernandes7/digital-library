@@ -20,7 +20,7 @@ export function BestSeller({ image }: BestSellerProps) {
         borderRadius={"1.5rem"}
       />
       <Chakra.Icon
-        color={"#f59e0b"}
+        color={"#fbbf24"}
         position={"absolute"}
         as={FaFire}
         top={4}

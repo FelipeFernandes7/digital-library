@@ -47,7 +47,25 @@ export function Home() {
       >
         {bestSellers.length > 0 &&
           bestSellers.map((item) => (
-            <BestSeller key={item.id} image={item.image} />
+            <Chakra.Flex key={item.id} flexDirection={"column"}>
+              <BestSeller image={item.image} />
+              <Chakra.Flex
+                w={"100%"}
+                h={"100%"}
+                mt={"0.5rem"}
+                flexDirection={"column"}
+                alignItems={"center"}
+              >
+                <Chakra.Text fontWeight={600}>{item.title}</Chakra.Text>
+                <Chakra.Text
+                  color={"#525252"}
+                  fontSize={"0.8rem"}
+                  fontWeight={400}
+                >
+                  {item.author}
+                </Chakra.Text>
+              </Chakra.Flex>
+            </Chakra.Flex>
           ))}
         {isLoading && (
           <Chakra.Flex

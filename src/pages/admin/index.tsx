@@ -117,10 +117,18 @@ export function Admin() {
       >
         <Chakra.Text
           w={"100%"}
+          p={"15px"}
           display={"flex"}
           fontSize={"1.5rem"}
           justifyContent={{ base: "flex-start", md: "center" }}
-          p={"15px"}
+          fontWeight={600}
+          backgroundImage={
+            "radial-gradient(circle at 10% 20%, rgb(255, 131, 61) 0%, rgb(249, 183, 23) 90%)"
+          }
+          sx={{
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          }}
         >
           Cadastrar Produto
         </Chakra.Text>

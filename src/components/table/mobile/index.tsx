@@ -5,6 +5,7 @@ import { ptBR } from "date-fns/locale";
 
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import { formatPrice } from "../../../helpers";
 
 interface TableMobileProps {
   products: ProductProps[];
@@ -31,8 +32,25 @@ export function TableMobile({ products }: TableMobileProps) {
               borderRadius={"0.5rem"}
             />
             <Chakra.Flex flexDirection={"column"} gap={1} w={"100%"}>
-              <Chakra.Text whiteSpace={"pre-wrap"} w={"100%"}>
+              <Chakra.Text
+                display={"flex"}
+                flexDirection={"column"}
+                whiteSpace={"pre-wrap"}
+                w={"100%"}
+                gap={"0.3rem"}
+              >
                 {product.title}
+                <Chakra.Text
+                  w={"100%"}
+                  whiteSpace={"nowrap"}
+                  color={"#fbbf24"}
+                  fontWeight={600}
+                >
+                  {formatPrice({
+                    value: product.price,
+                    coin: "BRL",
+                  })}
+                </Chakra.Text>
               </Chakra.Text>
               <Chakra.Text
                 w={"100%"}
@@ -43,7 +61,7 @@ export function TableMobile({ products }: TableMobileProps) {
                 flexDirection={"column"}
                 justifyContent={"flex-end"}
               >
-                {format(new Date(product.registeredIn), "dd-MM-yyyy", {
+                {format(new Date(product.registeredIn), "dd/MM/yyyy", {
                   locale: ptBR,
                 })}
               </Chakra.Text>
