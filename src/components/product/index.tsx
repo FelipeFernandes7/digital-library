@@ -92,7 +92,7 @@ export function Product({
             fontSize={{ base: "0.8rem", md: "1rem" }}
             fontWeight={500}
             whiteSpace={"pre-wrap"}
-            color={"#52323"}
+            color={"#6b7280"}
           >
             {author}
           </Chakra.Text>

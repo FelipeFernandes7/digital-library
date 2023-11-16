@@ -58,7 +58,7 @@ export function Home() {
               >
                 <Chakra.Text fontWeight={600}>{item.title}</Chakra.Text>
                 <Chakra.Text
-                  color={"#525252"}
+                  color={"#6b7280"}
                   fontSize={"0.8rem"}
                   fontWeight={400}
                 >
