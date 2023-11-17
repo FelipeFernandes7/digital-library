@@ -9,7 +9,7 @@ export function ModalEdit({ isOpen, onClose }: ModalProps) {
 
   return (
     <Chakra.Modal
-      size={{ base: "xs", md: "md" }}
+      size={{ base: "sm", md: "md" }}
       isOpen={isOpen}
       onClose={onClose}
       motionPreset={isMobile ? "slideInBottom" : "slideInRight"}
