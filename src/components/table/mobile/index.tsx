@@ -9,6 +9,7 @@ import { formatPrice } from "../../../helpers";
 import { AlertModal } from "../../modal/alert";
 import { useState } from "react";
 import { useProduct } from "../../../hooks";
+import { ModalEdit } from "../../modal/modalEdit";
 
 interface TableMobileProps {
   products: ProductProps[];
@@ -16,6 +17,11 @@ interface TableMobileProps {
 
 export function TableMobile({ products }: TableMobileProps) {
   const { onOpen, isOpen, onClose } = Chakra.useDisclosure();
+  const {
+    onOpen: onOpenEdit,
+    isOpen: isOpenEdit,
+    onClose: onCloseEdit,
+  } = Chakra.useDisclosure();
   const { deleteProduct } = useProduct();
   const [productId, setProductId] = useState("");
 
@@ -91,6 +97,7 @@ export function TableMobile({ products }: TableMobileProps) {
           <Chakra.Flex w={"100%"} gap={1} justifyContent={"flex-end"}>
             <Chakra.Button
               p={0}
+              onClick={onOpenEdit}
               variant={"unstyled"}
               cursor={"pointer"}
               bg={"none"}
@@ -140,6 +147,7 @@ export function TableMobile({ products }: TableMobileProps) {
         onClose={onClose}
         deleteProduct={() => handleDeleteProduct(productId)}
       />
+      <ModalEdit isOpen={isOpenEdit} onClose={onCloseEdit} />
     </Chakra.Flex>
   );
 }

@@ -24,6 +24,7 @@ export function Admin() {
     price: z.number(),
     description: z.string().nonempty("O campo descrição é obrigatório"),
     image: z.string().nonempty("O campo imagem é obrigatório"),
+    productLink: z.string().nonempty("O campo Link do Produto é obrigatório"),
   });
   type FormData = z.infer<typeof schema>;
 
@@ -37,7 +38,8 @@ export function Admin() {
   });
 
   async function handleOnSubmit(formValues: FormData) {
-    const { title, author, price, image, description } = formValues;
+    const { title, author, price, image, description, productLink } =
+      formValues;
     console.log(formValues);
     const productRef = ref(database, `records/products`);
     await push(productRef, {
@@ -47,6 +49,7 @@ export function Admin() {
       price,
       image,
       description,
+      productLink,
       registeredBy: user?.uid,
       isBestSeller: bestSeller,
       registeredIn: new Date().toISOString(),
@@ -151,6 +154,19 @@ export function Admin() {
             w={"full"}
             placeholder="Link da Imagem do Produto"
             error={errors.image}
+          />
+          <TextField
+            label="Link do Produto"
+            name="productLink"
+            register={register}
+            h={"3rem"}
+            borderRadius={"2rem"}
+            variant={"unstyled"}
+            bg={"transparent"}
+            border={"1px solid #525252"}
+            w={"full"}
+            placeholder="Link da Imagem do Produto"
+            error={errors.productLink}
           />
           <TextField
             h={"3rem"}
