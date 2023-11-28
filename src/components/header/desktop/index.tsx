@@ -37,10 +37,7 @@ export function HeaderDesktop({ isOpen, onOpen, onClose }: HeaderDesktopProps) {
         alignItems={"center"}
         fontSize={"1.5rem"}
         fontWeight={700}
-        bg={"rgb(255, 131, 61)"}
-        backgroundImage={
-          "radial-gradient(circle at 10% 20%, rgb(255, 131, 61) 0%, rgb(249, 183, 23) 90%)"
-        }
+        background="linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)"
         sx={{
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
@@ -50,7 +47,7 @@ export function HeaderDesktop({ isOpen, onOpen, onClose }: HeaderDesktopProps) {
           <Chakra.Icon
             as={FaBookOpen}
             fontSize={"2rem"}
-            color={isHome ? "rgb(249, 183, 23) " : "#fff"}
+            color={isHome ? "#7918F2" : "#fff"}
           />
         </Link>
         <Link to={"/"}>Livraria Digital</Link>
@@ -65,7 +62,7 @@ export function HeaderDesktop({ isOpen, onOpen, onClose }: HeaderDesktopProps) {
           >
             <Chakra.Icon
               onClick={() => navigate("/admin")}
-              color={isAdmin ? "rgb(249, 183, 23) " : "white"}
+              color={isAdmin ? "#7918F2 " : "white"}
               as={MdAdminPanelSettings}
               fontSize={"2.5rem"}
               _hover={{
@@ -82,7 +79,7 @@ export function HeaderDesktop({ isOpen, onOpen, onClose }: HeaderDesktopProps) {
           >
             <Chakra.Icon
               onClick={() => navigate("/records")}
-              color={isRecords ? "rgb(249, 183, 23) " : "white"}
+              color={isRecords ? "#7918F2 " : "white"}
               as={FaListUl}
               fontSize={"1.5rem"}
               _hover={{
@@ -102,9 +99,7 @@ export function HeaderDesktop({ isOpen, onOpen, onClose }: HeaderDesktopProps) {
             gap={"0.5rem"}
             padding={"0.5rem"}
             borderRadius={"2rem"}
-            background={
-              "radial-gradient(circle at 10% 20%, rgb(255, 131, 61) 0%, rgb(249, 183, 23) 90%)"
-            }
+            background="linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)"
             fontSize={"0.72rem"}
             fontWeight={700}
             transition={"all 0.3s ease"}
@@ -126,9 +121,7 @@ export function HeaderDesktop({ isOpen, onOpen, onClose }: HeaderDesktopProps) {
             gap={"0.5rem"}
             padding={"0.5rem"}
             borderRadius={{ base: "1rem", md: "2rem" }}
-            background={
-              "radial-gradient(circle at 10% 20%, rgb(255, 131, 61) 0%, rgb(249, 183, 23) 90%)"
-            }
+            background="linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)"
             fontSize={"0.72rem"}
             fontWeight={700}
             transition={"all 0.3s ease"}

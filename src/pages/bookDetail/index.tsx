@@ -61,11 +61,7 @@ export function BookDetail() {
               {product?.title.toUpperCase()}
             </Chakra.Text>
             <Chakra.Text>{product?.author}</Chakra.Text>
-            <Chakra.Text
-              fontSize={"1.5rem"}
-              fontWeight={700}
-              color={"yellow.300"}
-            >
+            <Chakra.Text fontSize={"1.5rem"} fontWeight={700} color={"#AC32E4"}>
               {formatPrice({
                 value: product ? product.price : 0,
                 currency: "BRL",
@@ -78,7 +74,7 @@ export function BookDetail() {
               justifyContent={"flex-start"}
               variant={"unstyled"}
               bg={"transparent"}
-              color={"orange.500"}
+              color={"#7918F2 "}
               opacity={isOpen ? 0.5 : 1}
               _hover={{
                 transition: "all 0.3s ease",
@@ -103,9 +99,7 @@ export function BookDetail() {
               display={{ base: "none", md: "block" }}
               borderRadius={"2rem"}
               color={"white"}
-              backgroundImage={
-                "radial-gradient(circle at 10% 20%, rgb(255, 131, 61) 0%, rgb(249, 183, 23) 90%)"
-              }
+              background="linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)"
               fontSize={"1rem"}
               fontWeight={700}
               transition={"all 0.3s ease"}
@@ -132,9 +126,7 @@ export function BookDetail() {
               borderRadius={"2rem"}
               w={"full"}
               color={"white"}
-              backgroundImage={
-                "radial-gradient(circle at 10% 20%, rgb(255, 131, 61) 0%, rgb(249, 183, 23) 90%)"
-              }
+              background="linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)"
               fontSize={"1rem"}
               fontWeight={700}
               transition={"all 0.3s ease"}

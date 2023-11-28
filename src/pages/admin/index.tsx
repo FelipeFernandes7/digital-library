@@ -113,7 +113,7 @@ export function Admin() {
         flexDirection={"column"}
         justifyContent={"center"}
         alignItems={"center"}
-        bg={{ md: "#0f172a", base: "none" }}
+        bg={{ md: "#030712", base: "none" }}
         borderRadius={"2rem"}
         width={{ md: "650px", base: "100%" }}
         mb={{ md: "1rem", base: "0" }}
@@ -125,9 +125,7 @@ export function Admin() {
           fontSize={"1.5rem"}
           justifyContent={{ base: "flex-start", md: "center" }}
           fontWeight={600}
-          backgroundImage={
-            "radial-gradient(circle at 10% 20%, rgb(255, 131, 61) 0%, rgb(249, 183, 23) 90%)"
-          }
+          background="linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)"
           sx={{
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
@@ -262,9 +260,7 @@ export function Admin() {
             gap={"0.5rem"}
             padding={"0.5rem"}
             borderRadius={"2rem"}
-            background={
-              "radial-gradient(circle at 10% 20%, rgb(255, 131, 61) 0%, rgb(249, 183, 23) 90%)"
-            }
+            background="linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)"
             fontSize={"1rem"}
             fontWeight={700}
             transition={"all 0.3s ease"}

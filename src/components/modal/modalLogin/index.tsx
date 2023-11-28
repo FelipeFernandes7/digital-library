@@ -77,11 +77,8 @@ export function ModalLogin({ isOpen, onClose }: ModalLoginProps) {
         <Chakra.ModalHeader
           w={"100%"}
           fontWeight={700}
-          bg={"rgb(255, 131, 61)"}
           textAlign={"center"}
-          backgroundImage={
-            "radial-gradient(circle at 10% 20%, rgb(255, 131, 61) 0%, rgb(249, 183, 23) 90%)"
-          }
+          background="linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)"
           sx={{
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
@@ -131,9 +128,7 @@ export function ModalLogin({ isOpen, onClose }: ModalLoginProps) {
               borderRadius={"2rem"}
               w={"full"}
               color={"white"}
-              backgroundImage={
-                "radial-gradient(circle at 10% 20%, rgb(255, 131, 61) 0%, rgb(249, 183, 23) 90%)"
-              }
+              background="linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)"
               fontSize={"1rem"}
               fontWeight={700}
               transition={"all 0.3s ease"}

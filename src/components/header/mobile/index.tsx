@@ -29,7 +29,7 @@ export function HeaderMobile({ isOpen, onOpen, onClose }: HeaderMobileProps) {
       bottom={0}
       zIndex={"5"}
       mt={"0.5rem"}
-      bg={"#0f172a"}
+      bg={"#0c0a09"}
       borderTopRadius={"1.5rem"}
       boxShadow={"rgba(0, 0, 0, 0.1) 0px 4px 12px"}
     >
@@ -43,7 +43,7 @@ export function HeaderMobile({ isOpen, onOpen, onClose }: HeaderMobileProps) {
           <Chakra.Icon
             as={FaBookOpen}
             fontSize={"2rem"}
-            color={isHome ? "rgb(249, 183, 23) " : "#fff"}
+            color={isHome ? "#7918F2" : "#fff"}
           />
         </Link>
         {signed && (
@@ -56,7 +56,7 @@ export function HeaderMobile({ isOpen, onOpen, onClose }: HeaderMobileProps) {
             >
               <Chakra.Icon
                 onClick={() => navigate("/admin")}
-                color={isAdmin ? "rgb(249, 183, 23) " : "white"}
+                color={isAdmin ? "#7918F2 " : "white"}
                 as={MdAdminPanelSettings}
                 fontSize={"2rem"}
                 _hover={{
@@ -73,7 +73,7 @@ export function HeaderMobile({ isOpen, onOpen, onClose }: HeaderMobileProps) {
             >
               <Chakra.Icon
                 onClick={() => navigate("/records")}
-                color={isRecords ? "rgb(249, 183, 23) " : "white"}
+                color={isRecords ? "#7918F2 " : "white"}
                 as={FaListUl}
                 fontSize={"1.5rem"}
                 _hover={{
@@ -93,9 +93,7 @@ export function HeaderMobile({ isOpen, onOpen, onClose }: HeaderMobileProps) {
               textAlign={"center"}
               padding={"0.5rem"}
               borderRadius={"2rem"}
-              background={
-                "radial-gradient(circle at 10% 20%, rgb(255, 131, 61) 0%, rgb(249, 183, 23) 90%)"
-              }
+              background="linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)"
               fontSize={"0.72rem"}
               fontWeight={700}
               transition={"all 0.3s ease"}
@@ -119,9 +117,7 @@ export function HeaderMobile({ isOpen, onOpen, onClose }: HeaderMobileProps) {
               fontSize={"0.72rem"}
               fontWeight={700}
               borderRadius={{ base: "1rem", md: "2rem" }}
-              background={
-                "radial-gradient(circle at 10% 20%, rgb(255, 131, 61) 0%, rgb(249, 183, 23) 90%)"
-              }
+              background="linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)"
               transition={"all 0.3s ease"}
               _active={{
                 transform: "scale(0.95)",

@@ -20,7 +20,7 @@ export function Product({
   return (
     <Chakra.Box
       transition={"all 0.3s ease"}
-      bg={{ md: "#111827", base: "none" }}
+      bg={{ md: "#030712", base: "none" }}
       w={{ base: "100%", md: "350px" }}
       h={{ base: "10rem auto", md: "auto" }}
       p={{ base: "10px", md: "0" }}
@@ -135,9 +135,7 @@ export function Product({
                 transform: "scale(0.95)",
               }}
               h={{ base: "2rem", md: "2.8rem" }}
-              background={
-                "radial-gradient(circle at 10% 20%, rgb(255, 131, 61) 0%, rgb(249, 183, 23) 90%)"
-              }
+              background="linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)"
               color={"#ffff"}
               w={"100%"}
             >
