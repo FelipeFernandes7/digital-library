@@ -21,7 +21,7 @@ export function Admin() {
   const schema = z.object({
     title: z.string().nonempty("O campo título é obrigatório"),
     author: z.string().nonempty("O campo autor é obrigatório"),
-    price: z.number(),
+    price: z.string(),
     description: z.string().nonempty("O campo descrição é obrigatório"),
     image: z.string().nonempty("O campo imagem é obrigatório"),
     productLink: z.string().nonempty("O campo Link do Produto é obrigatório"),
@@ -210,7 +210,9 @@ export function Admin() {
           <TextField
             h={"3rem"}
             w={"full"}
-            type="number"
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]*"
             label="Preço"
             name="price"
             register={register}

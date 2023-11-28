@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 import { database } from "../../services";
 import { get, ref } from "@firebase/database";
 import { formatPrice } from "../../helpers";
+import { CollapseTransition } from "../../components";
 
 export function BookDetail() {
   const { isOpen, onToggle, onClose } = useDisclosure();
@@ -60,7 +61,11 @@ export function BookDetail() {
               {product?.title.toUpperCase()}
             </Chakra.Text>
             <Chakra.Text>{product?.author}</Chakra.Text>
-            <Chakra.Text>
+            <Chakra.Text
+              fontSize={"1.5rem"}
+              fontWeight={700}
+              color={"yellow.300"}
+            >
               {formatPrice({
                 value: product ? product.price : 0,
                 currency: "BRL",
@@ -87,7 +92,11 @@ export function BookDetail() {
                 as={isOpen ? IoIosArrowUp : IoIosArrowDown}
               />
             </Chakra.Button>
-
+            <CollapseTransition isOpen={isOpen}>
+              <Chakra.Text fontSize={"1rem"} fontWeight={400} color={"#fff"}>
+                {product?.description}
+              </Chakra.Text>
+            </CollapseTransition>
             <Chakra.Button
               w={"full"}
               maxW={"300px"}
@@ -143,7 +152,7 @@ export function BookDetail() {
         </Chakra.Box>
       </Chakra.Flex>
       <SlideTransition isOpen={isOpen} onClose={onClose} direction={"bottom"}>
-        <Chakra.Text fontSize={"1.5rem"} fontWeight={400}>
+        <Chakra.Text fontSize={"1.2rem"} fontWeight={400}>
           {product?.description}
         </Chakra.Text>
       </SlideTransition>

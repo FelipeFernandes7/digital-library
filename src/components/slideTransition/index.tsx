@@ -17,10 +17,11 @@ export function SlideTransition({
   return (
     <Slide direction={direction} in={isOpen} style={{ zIndex: 10 }}>
       <Box
+        display={{ md: "none", base: "block" }}
         p="40px"
         color="white"
         mt="4"
-        bg="#111827"
+        bg="#131313"
         rounded="md"
         shadow="md"
         position={"relative"}
@@ -38,7 +39,7 @@ export function SlideTransition({
               transform: "scale(0.95)",
             }}
           >
-            <Icon as={RiCloseLine} color={"red"} fontSize={"2rem"} />
+            <Icon as={RiCloseLine} color={"#fff"} fontSize={"2rem"} />
           </Button>
         </Flex>
         {children}
