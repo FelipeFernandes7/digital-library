@@ -41,7 +41,7 @@ export function TableDesktop({ products }: TableDesktopProps) {
   return (
     <Chakra.TableContainer w={"100%"} borderRadius={"1rem"}>
       <Chakra.Table variant="unstyled" w={"100%"}>
-        <Chakra.Thead bg={"#111827"} color={"#fff"} w={"100%"}>
+        <Chakra.Thead bg={"#131313"} color={"#fff"} w={"100%"}>
           <Chakra.Tr border={"none"}>
             <Chakra.Th>Registrado em</Chakra.Th>
             <Chakra.Th>Produto</Chakra.Th>

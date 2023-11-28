@@ -20,7 +20,7 @@ export function Product({
   return (
     <Chakra.Box
       transition={"all 0.3s ease"}
-      bg={{ md: "#030712", base: "none" }}
+      bg={{ md: "#121212", base: "none" }}
       w={{ base: "100%", md: "350px" }}
       h={{ base: "10rem auto", md: "auto" }}
       p={{ base: "10px", md: "0" }}

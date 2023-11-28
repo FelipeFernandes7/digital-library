@@ -53,7 +53,7 @@ export function TableMobile({ products }: TableMobileProps) {
           w={"100%"}
           p={"10px"}
           display={"flex"}
-          bg={"#030712"}
+          bg={"#121212"}
           borderRadius={"1rem"}
           boxShadow={" rgba(0, 0, 0, 0.1) 0px 4px 12px"}
         >
@@ -107,7 +107,7 @@ export function TableMobile({ products }: TableMobileProps) {
               variant={"unstyled"}
               cursor={"pointer"}
               bg={"none"}
-              color={"#fbbf24"}
+              color={"#7918F2"}
               borderRadius={"1rem"}
               textAlign={"center"}
               display={"flex"}
