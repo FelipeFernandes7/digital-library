@@ -58,7 +58,11 @@ export function Home() {
                 flexDirection={"column"}
                 alignItems={"center"}
               >
-                <Chakra.Text fontWeight={600}>{item.title}</Chakra.Text>
+                <Chakra.Text whiteSpace={"pre-wrap"} fontWeight={600}>
+                  {item.title.length > 15
+                    ? `${item.title.substring(0, 15)}...`
+                    : item.title}
+                </Chakra.Text>
                 <Chakra.Text
                   color={"#6b7280"}
                   fontSize={"0.8rem"}
