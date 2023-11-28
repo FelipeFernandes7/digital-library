@@ -2,7 +2,6 @@ import { ReactNode, createContext, useEffect, useState } from "react";
 import { onValue, ref, remove, update } from "firebase/database";
 import { database } from "../services";
 import toast from "react-hot-toast";
-import { useAuth } from "../hooks";
 
 interface ProductContextType {
   product: ProductProps[];
@@ -21,6 +20,7 @@ export interface ProductProps {
   price: number;
   image: string;
   description: string;
+  productLink: string;
   isBestSeller: boolean;
   registeredBy: string;
   registeredIn: string;
@@ -30,7 +30,6 @@ export const ProductContext = createContext({} as ProductContextType);
 export function ProductProvider({ children }: ProductProviderProps) {
   const [product, setProduct] = useState<ProductProps[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const { user } = useAuth();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -47,6 +46,7 @@ export function ProductProvider({ children }: ProductProviderProps) {
               image: value.image,
               price: value.price,
               title: value.title,
+              productLink: value.productLink,
               description: value.description,
               isBestSeller: value.isBestSeller,
               registeredBy: value.registeredBy,
@@ -91,11 +91,9 @@ export function ProductProvider({ children }: ProductProviderProps) {
   }
 
   async function updateProduct(props: ProductProps) {
-    const productRef = ref(
-      database,
-      `records/${user?.uid}/products/${props.id}`,
-    );
-    await update(productRef, props)
+    const { id } = props;
+    const productRef = ref(database, `records/products/${id}`);
+    const product = await update(productRef, props)
       .then(() => {
         toast.success("Produto atualizado com sucesso!", {
           position: "top-center",
@@ -114,6 +112,8 @@ export function ProductProvider({ children }: ProductProviderProps) {
           },
         });
       });
+    console.log(product, "update");
+    return product;
   }
   return (
     <ProductContext.Provider

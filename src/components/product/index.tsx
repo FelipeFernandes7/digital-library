@@ -7,6 +7,7 @@ export interface ProductProps {
   price: number;
   image: string;
   bestSeller: boolean;
+  navigate: () => void;
 }
 export function Product({
   title,
@@ -14,6 +15,7 @@ export function Product({
   image,
   bestSeller,
   author,
+  navigate,
 }: ProductProps) {
   return (
     <Chakra.Box
@@ -104,7 +106,7 @@ export function Product({
           >
             {formatPrice({
               value: price,
-              coin: "BRL",
+              currency: "BRL",
             })}
           </Chakra.Text>
           <Chakra.Box
@@ -119,6 +121,7 @@ export function Product({
             p={{ md: "0.5rem", base: "0" }}
           >
             <Chakra.Button
+              onClick={navigate}
               className="active-button"
               display={{ base: "none", md: "block" }}
               borderRadius={{ base: "1rem", md: "2rem" }}

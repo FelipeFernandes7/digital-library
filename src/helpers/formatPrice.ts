@@ -1,11 +1,11 @@
 interface FormatPriceProps {
   value: number;
-  coin: "BRL" | "USD" | "EUR" | "GBP";
+  currency: "BRL" | "USD" | "EUR" | "GBP";
 }
-export function formatPrice({ value, coin }: FormatPriceProps) {
+export function formatPrice({ value, currency }: FormatPriceProps) {
   const formattedValue = new Intl.NumberFormat("pt-BR", {
     style: "currency",
-    currency: coin,
+    currency: currency,
   }).format(value);
 
   return formattedValue;

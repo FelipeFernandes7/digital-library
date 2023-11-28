@@ -27,11 +27,11 @@ export function HeaderMobile({ isOpen, onOpen, onClose }: HeaderMobileProps) {
       flexDirection={"column"}
       position={"fixed"}
       bottom={0}
-      zIndex={"10"}
+      zIndex={"5"}
       mt={"0.5rem"}
       bg={"#0f172a"}
       borderTopRadius={"1.5rem"}
-      boxShadow={"rgba(0, 0, 0, 0.1) 0px 4px 12px"}
+      boxShadow={"#fff 0px 8px 12px"}
     >
       <Chakra.Flex
         w={"100%"}

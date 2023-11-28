@@ -24,6 +24,7 @@ export function TableMobile({ products }: TableMobileProps) {
   } = Chakra.useDisclosure();
   const { deleteProduct } = useProduct();
   const [productId, setProductId] = useState("");
+  const [product, setProduct] = useState<ProductProps>();
 
   async function handleDeleteProduct(id: string) {
     try {
@@ -38,6 +39,11 @@ export function TableMobile({ products }: TableMobileProps) {
   function handleOpen(id: string) {
     setProductId(id);
     onOpen();
+  }
+
+  function handleOpenEditModal(props: ProductProps) {
+    setProduct(props);
+    onOpenEdit();
   }
   return (
     <Chakra.Flex flexDirection={"column"} w={"100%"} p={"10px"} gap={3}>
@@ -75,7 +81,7 @@ export function TableMobile({ products }: TableMobileProps) {
                 >
                   {formatPrice({
                     value: product.price,
-                    coin: "BRL",
+                    currency: "BRL",
                   })}
                 </Chakra.Text>
               </Chakra.Text>
@@ -97,7 +103,7 @@ export function TableMobile({ products }: TableMobileProps) {
           <Chakra.Flex w={"100%"} gap={1} justifyContent={"flex-end"}>
             <Chakra.Button
               p={0}
-              onClick={onOpenEdit}
+              onClick={() => handleOpenEditModal(product)}
               variant={"unstyled"}
               cursor={"pointer"}
               bg={"none"}
@@ -147,7 +153,11 @@ export function TableMobile({ products }: TableMobileProps) {
         onClose={onClose}
         deleteProduct={() => handleDeleteProduct(productId)}
       />
-      <ModalEdit isOpen={isOpenEdit} onClose={onCloseEdit} />
+      <ModalEdit
+        isOpen={isOpenEdit}
+        onClose={onCloseEdit}
+        props={product ? product : ({} as ProductProps)}
+      />
     </Chakra.Flex>
   );
 }

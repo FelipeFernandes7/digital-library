@@ -2,10 +2,12 @@ import * as Chakra from "@chakra-ui/react";
 import { Product } from "../../components/product";
 import { BestSeller } from "../../components/bestseller";
 import { useProduct } from "../../hooks";
+import { useNavigate } from "react-router-dom";
 
 export function Home() {
   const { product, isLoading } = useProduct();
   const bestSellers = product.filter((book) => book.isBestSeller);
+  const navigate = useNavigate();
   return (
     <Chakra.Flex
       w={"100%"}
@@ -48,7 +50,7 @@ export function Home() {
         {bestSellers.length > 0 &&
           bestSellers.map((item) => (
             <Chakra.Flex key={item.id} flexDirection={"column"}>
-              <BestSeller image={item.image} />
+              <BestSeller image={item.image} bookId={item.id} />
               <Chakra.Flex
                 w={"100%"}
                 h={"100%"}
@@ -106,6 +108,7 @@ export function Home() {
             image={item.image}
             bestSeller={item.isBestSeller}
             author={item.author}
+            navigate={() => navigate(`/book-detail/${item.id}`)}
           />
         ))}
       </Chakra.Flex>

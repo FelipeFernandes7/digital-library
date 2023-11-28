@@ -5,6 +5,7 @@ import { Private } from "./components/private";
 import { Admin } from "./pages/admin";
 import { Error } from "./pages/error";
 import { Records } from "./pages/records";
+import { BookDetail } from "./pages/bookDetail";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,14 @@ const router = createBrowserRouter([
         element: (
           <Private>
             <Records />
+          </Private>
+        ),
+      },
+      {
+        path: "/book-detail/:id",
+        element: (
+          <Private>
+            <BookDetail />
           </Private>
         ),
       },

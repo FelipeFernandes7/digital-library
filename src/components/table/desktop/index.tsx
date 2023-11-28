@@ -71,7 +71,7 @@ export function TableDesktop({ products }: TableDesktopProps) {
               <Chakra.Td>
                 {formatPrice({
                   value: product.price,
-                  coin: "BRL",
+                  currency: "BRL",
                 })}
               </Chakra.Td>
               <Chakra.Td>
@@ -132,7 +132,11 @@ export function TableDesktop({ products }: TableDesktopProps) {
         onClose={onClose}
         deleteProduct={() => handleDeleteProduct(productId)}
       />
-      <ModalEdit isOpen={isOpenEdit} onClose={onCloseEdit} />
+      <ModalEdit
+        props={products[0]}
+        isOpen={isOpenEdit}
+        onClose={onCloseEdit}
+      />
     </Chakra.TableContainer>
   );
 }
