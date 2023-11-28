@@ -58,7 +58,7 @@ export function Admin() {
         toast.success("Produto cadastrado com sucesso!", {
           position: "top-center",
           style: {
-            background: "#232323",
+            background: "#151515",
             color: "#fff",
           },
         });
@@ -68,7 +68,7 @@ export function Admin() {
         toast.error(error.message, {
           position: "top-center",
           style: {
-            background: "#232323",
+            background: "#151515",
             color: "#fff",
           },
         });

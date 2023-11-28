@@ -23,7 +23,7 @@ export function HeaderMobile({ isOpen, onOpen, onClose }: HeaderMobileProps) {
   const isHome = path === "/";
   return (
     <Chakra.Flex
-      w={"100%"}
+      w={"100vw"}
       flexDirection={"column"}
       position={"fixed"}
       bottom={0}

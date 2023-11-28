@@ -44,7 +44,7 @@ export function ModalLogin({ isOpen, onClose }: ModalLoginProps) {
         toast.success("Login efetuado com sucesso", {
           position: "top-center",
           style: {
-            background: "#1f2937",
+            background: "#151515",
             color: "#fff",
           },
         });
@@ -57,7 +57,7 @@ export function ModalLogin({ isOpen, onClose }: ModalLoginProps) {
         toast.error(error.message, {
           position: "top-center",
           style: {
-            background: "#1f2937",
+            background: "#151515",
             color: "#fff",
           },
         });

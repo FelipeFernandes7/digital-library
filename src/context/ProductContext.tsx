@@ -73,7 +73,7 @@ export function ProductProvider({ children }: ProductProviderProps) {
         toast.success("Produto excluído com sucesso!", {
           position: "top-center",
           style: {
-            background: "#0f172a",
+            background: "#151515",
             color: "#fff",
           },
         });
@@ -82,7 +82,7 @@ export function ProductProvider({ children }: ProductProviderProps) {
         toast.error(error.message, {
           position: "top-center",
           style: {
-            background: "#0f172a",
+            background: "#151515",
             color: "#fff",
           },
         });
@@ -98,7 +98,7 @@ export function ProductProvider({ children }: ProductProviderProps) {
         toast.success("Produto atualizado com sucesso!", {
           position: "top-center",
           style: {
-            background: "#0f172a",
+            background: "#151515",
             color: "#fff",
           },
         });
@@ -107,7 +107,7 @@ export function ProductProvider({ children }: ProductProviderProps) {
         toast.error(error.message, {
           position: "top-center",
           style: {
-            background: "#0f172a",
+            background: "#151515",
             color: "#fff",
           },
         });
