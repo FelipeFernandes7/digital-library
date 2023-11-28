@@ -26,7 +26,7 @@ export function SlideTransition({
         position={"relative"}
         zIndex={10}
       >
-        <Flex position={"absolute"} top={8} right={1}>
+        <Flex position={"absolute"} top={1} right={1}>
           <Button
             variant={"unstyled"}
             fontSize={"2rem"}
