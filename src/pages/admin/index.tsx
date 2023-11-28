@@ -234,6 +234,7 @@ export function Admin() {
                 onClick={() => setBestSeller(true)}
                 variant={"unstyled"}
                 borderRadius={"2rem"}
+                color={!bestSeller ? "#22c55e" : "white"}
                 border={!bestSeller ? "1px solid #22c55e" : "none"}
                 bg={bestSeller ? "#22c55e" : "transparent"}
               >
@@ -242,6 +243,7 @@ export function Admin() {
               <Chakra.Button
                 w={"100%"}
                 onClick={() => setBestSeller(false)}
+                color={bestSeller ? "#e11d48" : "white"}
                 variant={"unstyled"}
                 borderRadius={"2rem"}
                 bg={!bestSeller ? "#e11d48" : "none"}
