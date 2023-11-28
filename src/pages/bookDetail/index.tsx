@@ -61,7 +61,7 @@ export function BookDetail() {
               {product?.title.toUpperCase()}
             </Chakra.Text>
             <Chakra.Text>{product?.author}</Chakra.Text>
-            <Chakra.Text fontSize={"1.5rem"} fontWeight={700} color={"#AC32E4"}>
+            <Chakra.Text fontSize={"1.2rem"} fontWeight={"bold"} color={"#fff"}>
               {formatPrice({
                 value: product ? product.price : 0,
                 currency: "BRL",

@@ -76,7 +76,7 @@ export function TableMobile({ products }: TableMobileProps) {
                 <Chakra.Text
                   w={"100%"}
                   whiteSpace={"nowrap"}
-                  color={"#fbbf24"}
+                  color={"#fff"}
                   fontWeight={600}
                 >
                   {formatPrice({
