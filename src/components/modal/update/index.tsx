@@ -25,7 +25,7 @@ export function ModalUpdate({
           id={id}
         />
       ) : (
-        <UpdateDesktop isOpen={isOpen} onClose={onClose} />
+        <UpdateDesktop isOpen={isOpen} onClose={onClose} id={id} />
       )}
     </>
   );

@@ -2,52 +2,64 @@ import * as Chakra from "@chakra-ui/react";
 import { TextField } from "../../..";
 import { useMediaQuery } from "@chakra-ui/react";
 import { FaEdit } from "react-icons/fa";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { ProductProps } from "../../../../context/ProductContext";
+import { getBookById } from "../../../../services/api";
+import { useProduct } from "../../../../hooks";
 
 interface ModalEditProps {
+  id: string;
   isOpen: boolean;
   onClose: () => void;
 }
-export function UpdateDesktop({ isOpen, onClose }: ModalEditProps) {
+export function UpdateDesktop({ id, isOpen, onClose }: ModalEditProps) {
   const [isMobile] = useMediaQuery("(max-width: 600px)");
   const [bestSeller, setBestSeller] = useState(false);
-
-  const schema = z.object({
-    title: z.string(),
-    author: z.string(),
-    price: z.number(),
-    description: z.string(),
-    image: z.string(),
-    productLink: z.string(),
+  const { updateProduct } = useProduct();
+  const [newProduct, setNewProduct] = useState<ProductProps>({
+    id: "",
+    author: "",
+    title: "",
+    price: 0,
+    image: "",
+    description: "",
+    productLink: "",
+    isBestSeller: false,
+    registeredBy: "",
+    registeredIn: "",
   });
-  type FormData = z.infer<typeof schema>;
+  const getById = async () => {
+    if (newProduct) {
+      const result = await getBookById(id);
+      setNewProduct(result);
+    }
+  };
 
-  const {
-    register,
-    getValues,
-    formState: { errors },
-  } = useForm<FormData>({
-    resolver: zodResolver(schema),
-    mode: "onChange",
-  });
+  useEffect(() => {
+    getById();
+    return () => {
+      getById();
+    };
+  }, [isOpen]);
 
-  //   async function handleOnSubmit(formValues: FormData) {
-  //     const { title, author, price, image, description, productLink } =
-  //       formValues;
-  //     updateProduct({
-  //       title,
-  //       author,
-  //       price,
+  const handleRadioChange = (value: string) => {
+    setBestSeller(value === "true");
+  };
 
-  //       image,
-  //       description,
-  //       productLink,
-  //       isBestSeller: bestSeller,
-  //     });
-  //   }
+  async function handleOnSubmit(formValues: ProductProps) {
+    const { title, author, price, image, description, productLink } =
+      formValues;
+    updateProduct({
+      ...formValues,
+      title,
+      author,
+      price,
+      image,
+      description,
+      productLink,
+      isBestSeller: bestSeller,
+    });
+  }
 
   return (
     <Chakra.Modal
@@ -58,140 +70,116 @@ export function UpdateDesktop({ isOpen, onClose }: ModalEditProps) {
       motionPreset={isMobile ? "slideInBottom" : "slideInRight"}
     >
       <Chakra.ModalOverlay />
-      <Chakra.ModalContent bg={"#0f172a"} borderRadius={"1.5rem"}>
+      <Chakra.ModalContent bg={"#191919"} borderRadius={"1.5rem"}>
         <Chakra.ModalHeader
-          w={"100%"}
-          gap={"1rem"}
-          display={"flex"}
-          alignItems={"center"}
-          justifyContent={"center"}
+          borderBottomWidth="1px"
           fontWeight={700}
           textAlign={"center"}
-          backgroundImage={
-            "radial-gradient(circle at 10% 20%, rgb(255, 131, 61) 0%, rgb(249, 183, 23) 90%)"
-          }
+          background="linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)"
           sx={{
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
           }}
         >
-          Editar Produto
-          {
-            <Chakra.Icon
-              as={FaEdit}
-              fontSize={"1.5rem"}
-              color={"rgb(249, 183, 23)"}
-            />
-          }
+          Editar Produto <Chakra.Icon as={FaEdit} color={"#7918F2"} ml={2} />
         </Chakra.ModalHeader>
         <Chakra.ModalCloseButton />
         <Chakra.ModalBody pb={6}>
-          <Chakra.Box
-            as="form"
-            w={"100%"}
-            gap={"1rem"}
+          <Chakra.FormControl
+            as={"form"}
             display={"flex"}
             flexDirection={"column"}
-            alignItems={"center"}
+            mt={"1rem"}
+            gap={"1rem"}
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleOnSubmit(newProduct);
+              onClose();
+            }}
           >
             <TextField
-              name="title"
-              register={register}
-              label="Título"
-              borderRadius={"1rem"}
-              bg={"transparent"}
+              label="Imagem do Produto"
+              placeholder="Cole o Link da Imagem Aqui..."
+              value={newProduct?.image}
+              onChange={(e) =>
+                setNewProduct({ ...newProduct, image: e.target.value })
+              }
+              bg={"#151515"}
               color={"#fff"}
-              border={"1px solid #fff"}
-              placeholder="Título do Produto"
-              error={errors.title}
-              value={getValues("title")}
+              border={"none"}
             />
             <TextField
-              name="description"
-              register={register}
-              label="Descrição"
-              borderRadius={"1rem"}
-              bg={"transparent"}
-              color={"#fff"}
-              border={"1px solid #fff"}
-              placeholder="Descrição do Produto"
-              error={errors.description}
-            />
-            <TextField
-              name="author"
-              register={register}
-              label="Autor"
-              borderRadius={"1rem"}
-              bg={"transparent"}
-              color={"#fff"}
-              border={"1px solid #fff"}
-              placeholder="Autor do Produto"
-              error={errors.author}
-            />
-            <TextField
-              name="price"
-              type="number"
-              register={register}
-              label="Preço"
-              borderRadius={"1rem"}
-              bg={"transparent"}
-              color={"#fff"}
-              border={"1px solid #fff"}
-              placeholder="Preço do Produto"
-              error={errors.price}
-            />
-            <TextField
-              name="image"
-              register={register}
-              label="Link da imagem"
-              borderRadius={"1rem"}
-              bg={"transparent"}
-              color={"#fff"}
-              border={"1px solid #fff"}
-              placeholder="Link da imagem do Produto"
-              error={errors.image}
-            />
-            <TextField
-              name="productLink"
-              register={register}
               label="Link do Produto"
-              borderRadius={"1rem"}
-              bg={"transparent"}
+              placeholder="Cole o Link do Produto Aqui..."
+              value={newProduct?.productLink}
+              onChange={(e) =>
+                setNewProduct({ ...newProduct, productLink: e.target.value })
+              }
+              bg={"#151515"}
               color={"#fff"}
-              border={"1px solid #fff"}
-              placeholder="Link do Produto"
-              error={errors.productLink}
+              border={"none"}
             />
-            <Chakra.Box display={"flex"} w={"100%"} flexDirection={"column"}>
-              <Chakra.Text>Produto está em Alta?</Chakra.Text>
-              <Chakra.Flex
-                w={"100%"}
-                mt={"0.5rem"}
-                gap={"0.5rem"}
-                alignItems={"center"}
-              >
-                <Chakra.Button
-                  w={"100%"}
-                  onClick={() => setBestSeller(true)}
-                  variant={"unstyled"}
-                  borderRadius={"2rem"}
-                  border={!bestSeller ? "1px solid #22c55e" : "none"}
-                  bg={bestSeller ? "#22c55e" : "transparent"}
-                >
+            <TextField
+              label="Título"
+              placeholder="Escreva o Título Aqui..."
+              value={newProduct?.title}
+              onChange={(e) =>
+                setNewProduct({ ...newProduct, title: e.target.value })
+              }
+              bg={"#151515"}
+              color={"#fff"}
+              border={"none"}
+            />
+            <TextField
+              label="Descrição"
+              placeholder="Escreva a Descrição Aqui..."
+              value={newProduct?.description}
+              onChange={(e) =>
+                setNewProduct({ ...newProduct, description: e.target.value })
+              }
+              bg={"#151515"}
+              color={"#fff"}
+              border={"none"}
+            />
+            <TextField
+              label="Autor"
+              placeholder="Escreva o Autor Aqui..."
+              value={newProduct?.author}
+              onChange={(e) =>
+                setNewProduct({ ...newProduct, author: e.target.value })
+              }
+              bg={"#151515"}
+              color={"#fff"}
+              border={"none"}
+            />
+            <TextField
+              type="number"
+              label="Preço"
+              placeholder="Escreva o Preço Aqui..."
+              value={newProduct?.price}
+              onChange={(e) =>
+                setNewProduct({ ...newProduct, price: Number(e.target.value) })
+              }
+              bg={"#151515"}
+              color={"#fff"}
+              border={"none"}
+            />
+            <Chakra.RadioGroup
+              display={"flex"}
+              flexDirection={"column"}
+              defaultValue={bestSeller.toString()}
+              onChange={handleRadioChange}
+            >
+              <Chakra.Text mb={"0.5rem"}>O Produto está em Alta?</Chakra.Text>
+              <Chakra.Stack direction="row" mb="4">
+                <Chakra.Radio colorScheme="green" value={"true"}>
                   Sim
-                </Chakra.Button>
-                <Chakra.Button
-                  w={"100%"}
-                  onClick={() => setBestSeller(false)}
-                  variant={"unstyled"}
-                  borderRadius={"2rem"}
-                  bg={!bestSeller ? "#e11d48" : "none"}
-                  border={bestSeller ? "1px solid #e11d48" : "none"}
-                >
+                </Chakra.Radio>
+                <Chakra.Radio colorScheme="red" value={"false"}>
                   Não
-                </Chakra.Button>
-              </Chakra.Flex>
-            </Chakra.Box>
+                </Chakra.Radio>
+              </Chakra.Stack>
+            </Chakra.RadioGroup>
             <Chakra.Flex
               w={"100%"}
               justifyContent={"center"}
@@ -200,11 +188,12 @@ export function UpdateDesktop({ isOpen, onClose }: ModalEditProps) {
             >
               <Chakra.Button
                 w={"100%"}
+                h={"2.5rem"}
                 border={"1px solid #fff"}
                 bg={"transparent"}
                 color={"#fff"}
                 onClick={onClose}
-                borderRadius={"2rem"}
+                borderRadius={"0.5rem"}
                 _active={{
                   transition: "all 0.3s ease",
                   transform: "scale(0.95)",
@@ -215,14 +204,11 @@ export function UpdateDesktop({ isOpen, onClose }: ModalEditProps) {
 
               <Chakra.Button
                 type="submit"
-                borderRadius={"2rem"}
+                h={"2.5rem"}
                 w={"full"}
                 color={"white"}
-                backgroundImage={
-                  "radial-gradient(circle at 10% 20%, rgb(255, 131, 61) 0%, rgb(249, 183, 23) 90%)"
-                }
-                fontSize={"1rem"}
-                fontWeight={700}
+                borderRadius={"0.5rem"}
+                background="linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)"
                 transition={"all 0.3s ease"}
                 _active={{
                   transform: "scale(0.95)",
@@ -234,7 +220,7 @@ export function UpdateDesktop({ isOpen, onClose }: ModalEditProps) {
                 Salvar
               </Chakra.Button>
             </Chakra.Flex>
-          </Chakra.Box>
+          </Chakra.FormControl>
         </Chakra.ModalBody>
       </Chakra.ModalContent>
     </Chakra.Modal>

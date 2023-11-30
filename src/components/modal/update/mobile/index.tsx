@@ -19,6 +19,7 @@ import { TextField } from "../../..";
 import { useEffect, useState } from "react";
 import { ProductProps } from "../../../../context/ProductContext";
 import { getBookById } from "../../../../services/api";
+import { useProduct } from "../../../../hooks";
 
 interface UpdateMobileProps {
   id: string;
@@ -33,6 +34,7 @@ export function UpdateMobile({
   placement,
 }: UpdateMobileProps) {
   const [bestSeller, setBestSeller] = useState(false);
+  const { updateProduct } = useProduct();
   const [newProduct, setNewProduct] = useState<ProductProps>({
     id: "",
     author: "",
@@ -63,6 +65,21 @@ export function UpdateMobile({
     setBestSeller(value === "true");
   };
 
+  async function handleOnSubmit(formValues: ProductProps) {
+    const { title, author, price, image, description, productLink } =
+      formValues;
+    updateProduct({
+      ...formValues,
+      title,
+      author,
+      price,
+      image,
+      description,
+      productLink,
+      isBestSeller: bestSeller,
+    });
+  }
+
   return (
     <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
       <DrawerOverlay />
@@ -86,6 +103,11 @@ export function UpdateMobile({
             flexDirection={"column"}
             mt={"1rem"}
             gap={"1rem"}
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleOnSubmit(newProduct);
+              onClose();
+            }}
           >
             <TextField
               label="Imagem do Produto"
