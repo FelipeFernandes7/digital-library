@@ -163,7 +163,7 @@ export function Admin() {
             variant={"unstyled"}
             bg={{ md: "#131313", base: "#191919" }}
             w={"full"}
-            placeholder="Link da Imagem do Produto"
+            placeholder="Link do Produto"
             error={errors.productLink}
           />
           <TextField
@@ -211,7 +211,6 @@ export function Admin() {
             type="text"
             border={"none"}
             inputMode="numeric"
-            pattern="[0-9]*"
             label="Preço"
             name="price"
             register={register}

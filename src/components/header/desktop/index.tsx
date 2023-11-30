@@ -133,7 +133,7 @@ export function HeaderDesktop({ isOpen, onOpen, onClose }: HeaderDesktopProps) {
           </Chakra.Flex>
         )}
       </Chakra.Flex>
-      <ModalLogin isOpen={isOpen} onClose={onClose} />
+      <ModalLogin isOpen={isOpen} onClose={onClose} placement={"bottom"} />
     </Chakra.Flex>
   );
 }

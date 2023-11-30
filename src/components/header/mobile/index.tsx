@@ -134,7 +134,7 @@ export function HeaderMobile({ isOpen, onOpen, onClose }: HeaderMobileProps) {
               />
             </Chakra.Button>
           )}
-          <ModalLogin isOpen={isOpen} onClose={onClose} />
+          <ModalLogin isOpen={isOpen} onClose={onClose} placement={"bottom"} />
         </Chakra.Flex>
       </Chakra.Flex>
     </Chakra.Flex>
