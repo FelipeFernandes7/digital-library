@@ -134,11 +134,10 @@ export function LoginMobile({ isOpen, onClose, placement }: LoginMobileProps) {
               flexDirection={"column"}
               w={"100%"}
               h={"100%"}
-              justifyContent={"flex-end"}
+              justifyContent={"center"}
             >
               <Button
                 type="submit"
-                mb={3}
                 borderRadius={"0.5rem"}
                 w={"full"}
                 color={"white"}
