@@ -26,7 +26,6 @@ export function Temperature() {
     async function fetchData() {
       try {
         const response = await getTodayWeather();
-        console.log(response, "response");
         if (response && response.main && response.main.temp !== undefined) {
           const temperatureCelsius = kelvinToCelsius(response.main.temp);
 
@@ -37,7 +36,6 @@ export function Temperature() {
             },
           };
           setWeather(weatherWithCelsius);
-          console.log(weatherWithCelsius, "weather");
         }
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {

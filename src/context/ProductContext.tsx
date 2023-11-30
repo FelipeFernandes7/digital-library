@@ -54,7 +54,6 @@ export function ProductProvider({ children }: ProductProviderProps) {
             }),
           );
           setProduct(parsedProducts);
-          console.log(parsedProducts);
         });
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -112,7 +111,6 @@ export function ProductProvider({ children }: ProductProviderProps) {
           },
         });
       });
-    console.log(product, "update");
     return product;
   }
   return (
