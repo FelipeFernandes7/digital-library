@@ -73,7 +73,7 @@ export function ModalLogin({ isOpen, onClose }: ModalLoginProps) {
       motionPreset={isMobile ? "slideInBottom" : "slideInRight"}
     >
       <Chakra.ModalOverlay />
-      <Chakra.ModalContent bg={"#121212"} borderRadius={"1.5rem"}>
+      <Chakra.ModalContent bg={"#191919"} borderRadius={"0.5rem"}>
         <Chakra.ModalHeader
           w={"100%"}
           fontWeight={700}
@@ -92,8 +92,9 @@ export function ModalLogin({ isOpen, onClose }: ModalLoginProps) {
             <Chakra.FormControl>
               <Chakra.FormLabel>E-mail</Chakra.FormLabel>
               <TextField
-                borderColor={"#ffff"}
-                borderRadius={"2rem"}
+                border={"none"}
+                bg={"#232323"}
+                borderRadius={"0.5rem"}
                 type="email"
                 name="email"
                 register={register}
@@ -105,8 +106,9 @@ export function ModalLogin({ isOpen, onClose }: ModalLoginProps) {
             <Chakra.FormControl mt={4}>
               <Chakra.FormLabel>Senha</Chakra.FormLabel>
               <TextField
-                borderColor={"#ffff"}
-                borderRadius={"2rem"}
+                border={"none"}
+                borderRadius={"0.5rem"}
+                bg={"#232323"}
                 type="password"
                 name="password"
                 register={register}
@@ -125,12 +127,11 @@ export function ModalLogin({ isOpen, onClose }: ModalLoginProps) {
             <Chakra.Button
               type="submit"
               mt={3}
-              borderRadius={"2rem"}
+              borderRadius={"0.5rem"}
               w={"full"}
               color={"white"}
               background="linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)"
-              fontSize={"1rem"}
-              fontWeight={700}
+              fontSize={"0.95rem"}
               transition={"all 0.3s ease"}
               _active={{
                 transform: "scale(0.95)",

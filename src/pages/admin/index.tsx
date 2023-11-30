@@ -113,8 +113,8 @@ export function Admin() {
         flexDirection={"column"}
         justifyContent={"center"}
         alignItems={"center"}
-        bg={{ md: "#121212", base: "none" }}
-        borderRadius={"2rem"}
+        bg={{ md: "#191919", base: "none" }}
+        borderRadius={"0.5rem"}
         width={{ md: "650px", base: "100%" }}
         mb={{ md: "1rem", base: "0" }}
       >
@@ -141,27 +141,27 @@ export function Admin() {
           maxW={{ md: "400px", base: "100%" }}
         >
           <TextField
+            border={"none"}
             label="Link da Imagem do Produto"
             name="image"
             register={register}
             h={"3rem"}
-            borderRadius={"2rem"}
+            borderRadius={"0.5rem"}
             variant={"unstyled"}
-            bg={"transparent"}
-            border={"1px solid #525252"}
+            bg={{ md: "#131313", base: "#191919" }}
             w={"full"}
             placeholder="Link da Imagem do Produto"
             error={errors.image}
           />
           <TextField
+            border={"none"}
             label="Link do Produto"
             name="productLink"
             register={register}
             h={"3rem"}
-            borderRadius={"2rem"}
+            borderRadius={"0.5rem"}
             variant={"unstyled"}
-            bg={"transparent"}
-            border={"1px solid #525252"}
+            bg={{ md: "#131313", base: "#191919" }}
             w={"full"}
             placeholder="Link da Imagem do Produto"
             error={errors.productLink}
@@ -171,11 +171,11 @@ export function Admin() {
             w={"full"}
             label="Título"
             name="title"
+            border={"none"}
             register={register}
-            borderRadius={"2rem"}
+            borderRadius={"0.5rem"}
             variant={"unstyled"}
-            bg={"transparent"}
-            border={"1px solid #525252"}
+            bg={{ md: "#131313", base: "#191919" }}
             placeholder="Título"
             error={errors.title}
           />
@@ -184,24 +184,24 @@ export function Admin() {
             w={"full"}
             label="Autor"
             name="author"
+            border={"none"}
             register={register}
-            borderRadius={"2rem"}
+            borderRadius={"0.5rem"}
             variant={"unstyled"}
-            bg={"transparent"}
-            border={"1px solid #525252"}
+            bg={{ md: "#131313", base: "#191919" }}
             placeholder="Autor"
             error={errors.author}
           />
           <TextField
             h={"3rem"}
             w={"full"}
+            border={"none"}
             label="Descrição"
             name="description"
             register={register}
-            borderRadius={"2rem"}
+            borderRadius={"0.5rem"}
             variant={"unstyled"}
-            bg={"transparent"}
-            border={"1px solid #525252"}
+            bg={{ md: "#131313", base: "#191919" }}
             placeholder="Descrição"
             error={errors.description}
           />
@@ -209,15 +209,15 @@ export function Admin() {
             h={"3rem"}
             w={"full"}
             type="text"
+            border={"none"}
             inputMode="numeric"
             pattern="[0-9]*"
             label="Preço"
             name="price"
             register={register}
-            borderRadius={"2rem"}
+            borderRadius={"0.5rem"}
             variant={"unstyled"}
-            bg={"transparent"}
-            border={"1px solid #525252"}
+            bg={{ md: "#131313", base: "#191919" }}
             placeholder="Preço"
             error={errors.price}
           />
@@ -227,13 +227,14 @@ export function Admin() {
               w={"100%"}
               mt={"0.5rem"}
               gap={"0.5rem"}
+              border={"none"}
               alignItems={"center"}
             >
               <Chakra.Button
                 w={"100%"}
                 onClick={() => setBestSeller(true)}
                 variant={"unstyled"}
-                borderRadius={"2rem"}
+                borderRadius={"0.5rem"}
                 color={!bestSeller ? "#22c55e" : "white"}
                 border={!bestSeller ? "1px solid #22c55e" : "none"}
                 bg={bestSeller ? "#22c55e" : "transparent"}
@@ -245,7 +246,7 @@ export function Admin() {
                 onClick={() => setBestSeller(false)}
                 color={bestSeller ? "#e11d48" : "white"}
                 variant={"unstyled"}
-                borderRadius={"2rem"}
+                borderRadius={"0.5rem"}
                 bg={!bestSeller ? "#e11d48" : "none"}
                 border={bestSeller ? "1px solid #e11d48" : "none"}
               >
@@ -261,7 +262,7 @@ export function Admin() {
             color={"white"}
             gap={"0.5rem"}
             padding={"0.5rem"}
-            borderRadius={"2rem"}
+            borderRadius={"0.5rem"}
             background="linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)"
             fontSize={"1rem"}
             fontWeight={700}

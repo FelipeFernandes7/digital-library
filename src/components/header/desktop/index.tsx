@@ -1,13 +1,11 @@
 import * as Chakra from "@chakra-ui/react";
 
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { FiLogOut } from "react-icons/fi";
 import { useAuth } from "../../../hooks";
 import { ModalLogin } from "../../modal/modalLogin";
 import { MdAdminPanelSettings } from "react-icons/md";
-import { FaListUl } from "react-icons/fa";
-import { FaBookOpen } from "react-icons/fa6";
 interface HeaderDesktopProps {
   isOpen: boolean;
   onOpen: () => void;
@@ -23,125 +21,119 @@ export function HeaderDesktop({ isOpen, onOpen, onClose }: HeaderDesktopProps) {
   const isRecords = path === "/records";
   const isHome = path === "/";
   return (
-    <Chakra.Flex
-      w={"100%"}
-      h={"5rem"}
-      p={"1rem"}
-      alignItems={"center"}
-      justifyContent={"space-between"}
-    >
-      <Chakra.Text
+    <Chakra.Flex w={"100vw"}>
+      <Chakra.Flex
         w={"100%"}
-        gap={2}
-        display={"flex"}
+        maxW={"64rem"}
+        mx={"auto"}
+        h={"5rem"}
+        p={"15px"}
+        bg={"#191919"}
         alignItems={"center"}
-        fontSize={"1.5rem"}
-        fontWeight={700}
-        background="linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)"
-        sx={{
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-        }}
+        borderRadius={"0.5rem"}
+        boxShadow={"rgba(0, 0, 0, 0.1) 0px 4px 12px"}
       >
-        <Link to={"/"} style={{ display: "flex", alignItems: "center" }}>
-          <Chakra.Icon
-            as={FaBookOpen}
-            fontSize={"2rem"}
-            color={isHome ? "#7918F2" : "#fff"}
-          />
-        </Link>
-        <Link to={"/"}>Livraria Digital</Link>
-      </Chakra.Text>
-      {signed && (
-        <Chakra.Flex width={"100%"} justifyContent={"space-evenly"}>
-          <Chakra.Box
-            cursor={"pointer"}
-            display={"flex"}
-            alignItems={"center"}
-            justifyContent={"center"}
-          >
-            <Chakra.Icon
-              onClick={() => navigate("/admin")}
-              color={isAdmin ? "#7918F2 " : "white"}
-              as={MdAdminPanelSettings}
-              fontSize={"2.5rem"}
-              _hover={{
-                transition: "all 0.3s ease",
-                opacity: 0.8,
+        <Chakra.Text
+          ml={"1rem"}
+          cursor={"pointer"}
+          fontSize={"1.2rem"}
+          onClick={() => navigate("/")}
+          whiteSpace={"nowrap"}
+        >
+          Livraria Digital
+        </Chakra.Text>
+        {signed && (
+          <>
+            <Chakra.Flex
+              w={"100%"}
+              gap={"1rem"}
+              alignItems={"center"}
+              justifyContent={"center"}
+            >
+              <Chakra.Text
+                onClick={() => navigate("/")}
+                cursor={"pointer"}
+                fontSize={"0.95rem"}
+                color={isHome ? "#7918F2" : "white"}
+              >
+                Home
+              </Chakra.Text>
+              <Chakra.Text
+                onClick={() => navigate("/admin")}
+                cursor={"pointer"}
+                fontSize={"0.95rem"}
+                color={isAdmin ? "#7918F2" : "white"}
+              >
+                Admin
+              </Chakra.Text>
+              <Chakra.Text
+                onClick={() => navigate("/records")}
+                cursor={"pointer"}
+                fontSize={"0.95rem"}
+                color={isRecords ? "#7918F2" : "white"}
+              >
+                Registros
+              </Chakra.Text>
+            </Chakra.Flex>
+            <Chakra.Button
+              mr={"1rem"}
+              aria-label="Sair"
+              bg={"white"}
+              onClick={logOut}
+              gap={"0.5rem"}
+              padding={"0.5rem"}
+              fontSize={"0.72rem"}
+              fontWeight={700}
+              borderRadius={{ base: "1rem", md: "0.5rem" }}
+              background="linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)"
+              transition={"all 0.3s ease"}
+              _active={{
+                transform: "scale(0.95)",
               }}
-            />
-          </Chakra.Box>
-          <Chakra.Box
-            cursor={"pointer"}
-            display={"flex"}
-            alignItems={"center"}
-            justifyContent={"center"}
-          >
-            <Chakra.Icon
-              onClick={() => navigate("/records")}
-              color={isRecords ? "#7918F2 " : "white"}
-              as={FaListUl}
-              fontSize={"1.5rem"}
               _hover={{
-                transition: "all 0.3s ease",
-                opacity: 0.8,
+                opacity: 0.9,
               }}
-            />
-          </Chakra.Box>
-        </Chakra.Flex>
-      )}
-
-      <Chakra.Flex w={"100%"} justifyContent={"flex-end"}>
-        {!signed ? (
-          <Chakra.Button
-            color={"white"}
-            onClick={onOpen}
-            gap={"0.5rem"}
-            padding={"0.5rem"}
-            borderRadius={"2rem"}
-            background="linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)"
-            fontSize={"0.72rem"}
-            fontWeight={700}
-            transition={"all 0.3s ease"}
-            _active={{
-              transform: "scale(0.95)",
-            }}
-            _hover={{
-              opacity: 0.9,
-            }}
-          >
-            Acessar Admin
-            <Chakra.Icon as={MdAdminPanelSettings} fontSize={"1rem"} />
-          </Chakra.Button>
-        ) : (
-          <Chakra.Button
-            aria-label="Sair"
-            color={"white"}
-            onClick={logOut}
-            gap={"0.5rem"}
-            padding={"0.5rem"}
-            borderRadius={{ base: "1rem", md: "2rem" }}
-            background="linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)"
-            fontSize={"0.72rem"}
-            fontWeight={700}
-            transition={"all 0.3s ease"}
-            _active={{
-              transform: "scale(0.95)",
-            }}
-            _hover={{
-              opacity: 0.9,
-            }}
-          >
-            <Chakra.Icon
-              color={"white"}
-              as={FiLogOut}
-              fontSize={"1.5rem"}
-              cursor={"pointer"}
-            />
-          </Chakra.Button>
+            >
+              <Chakra.Icon
+                as={FiLogOut}
+                fontSize={"1.5rem"}
+                cursor={"pointer"}
+                color={"#fff"}
+              />
+            </Chakra.Button>
+          </>
         )}
-        <ModalLogin isOpen={isOpen} onClose={onClose} />
+        {!signed && (
+          <Chakra.Flex
+            w={"100%"}
+            alignItems={"center"}
+            justifyContent={"flex-end"}
+          >
+            <Chakra.Button
+              color={"#ffff"}
+              onClick={onOpen}
+              gap={"0.3rem"}
+              textAlign={"center"}
+              padding={"0.5rem"}
+              borderRadius={"0.5rem"}
+              background="linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)"
+              fontSize={"0.72rem"}
+              fontWeight={700}
+              transition={"all 0.3s ease"}
+              _active={{
+                transform: "scale(0.95)",
+              }}
+              _hover={{
+                opacity: 0.9,
+              }}
+            >
+              Acessar Admin
+              <Chakra.Icon as={MdAdminPanelSettings} fontSize={"1rem"} />
+            </Chakra.Button>
+          </Chakra.Flex>
+        )}
       </Chakra.Flex>
+      <ModalLogin isOpen={isOpen} onClose={onClose} />
     </Chakra.Flex>
   );
 }

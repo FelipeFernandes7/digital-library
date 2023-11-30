@@ -6,7 +6,7 @@ import { FaBagShopping } from "react-icons/fa6";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import { useEffect, useState } from "react";
 import { ProductProps } from "../../context/ProductContext";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { database } from "../../services";
 import { get, ref } from "@firebase/database";
 import { formatPrice } from "../../helpers";
@@ -15,6 +15,7 @@ import { CollapseTransition } from "../../components";
 export function BookDetail() {
   const { isOpen, onToggle, onClose } = useDisclosure();
   const [product, setProduct] = useState<ProductProps>();
+  const navigate = useNavigate();
   const { id } = useParams();
 
   async function getProductById() {
@@ -22,6 +23,12 @@ export function BookDetail() {
       const productRef = ref(database, `records/products/${id}`);
       const getProduct = await get(productRef);
       setProduct(getProduct.val());
+    }
+  }
+
+  function handleBuyProduct() {
+    if (product?.productLink) {
+      navigate(product.productLink);
     }
   }
 
@@ -94,6 +101,7 @@ export function BookDetail() {
               </Chakra.Text>
             </CollapseTransition>
             <Chakra.Button
+              onClick={handleBuyProduct}
               w={"full"}
               maxW={"300px"}
               display={{ base: "none", md: "block" }}
@@ -123,6 +131,7 @@ export function BookDetail() {
             display={{ base: "block", md: "none" }}
           >
             <Chakra.Button
+              onClick={handleBuyProduct}
               borderRadius={"2rem"}
               w={"full"}
               color={"white"}

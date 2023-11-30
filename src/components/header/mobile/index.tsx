@@ -92,7 +92,7 @@ export function HeaderMobile({ isOpen, onOpen, onClose }: HeaderMobileProps) {
               gap={"0.3rem"}
               textAlign={"center"}
               padding={"0.5rem"}
-              borderRadius={"2rem"}
+              borderRadius={"0.5rem"}
               background="linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)"
               fontSize={"0.72rem"}
               fontWeight={700}
@@ -116,7 +116,7 @@ export function HeaderMobile({ isOpen, onOpen, onClose }: HeaderMobileProps) {
               padding={"0.5rem"}
               fontSize={"0.72rem"}
               fontWeight={700}
-              borderRadius={{ base: "1rem", md: "2rem" }}
+              borderRadius={"0.5rem"}
               background="linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)"
               transition={"all 0.3s ease"}
               _active={{

@@ -20,13 +20,13 @@ export function Product({
   return (
     <Chakra.Box
       transition={"all 0.3s ease"}
-      bg={{ md: "#121212", base: "none" }}
+      bg={{ md: "#191919", base: "none" }}
       w={{ base: "100%", md: "350px" }}
       h={{ base: "10rem auto", md: "auto" }}
       p={{ base: "10px", md: "0" }}
       display={"flex"}
       justifyContent={{ md: "center", base: "flex-start" }}
-      borderRadius={{ md: "2rem", base: "0" }}
+      borderRadius={{ md: "0.5rem", base: "0" }}
       borderBottom={{ base: "1px solid #1f2937", md: "none" }}
       cursor={"pointer"}
       _hover={{
@@ -44,7 +44,7 @@ export function Product({
         <Chakra.Image
           alt="Livro"
           src={image}
-          borderRadius={{ base: "1rem", md: "2rem 2rem 0 0" }}
+          borderRadius={{ base: "1rem", md: "0.5rem" }}
           objectFit={{ base: "cover", md: "cover" }}
           w={{ base: 120, md: "100%" }}
           h={{ base: 120, md: "200px" }}
@@ -124,7 +124,7 @@ export function Product({
               onClick={navigate}
               className="active-button"
               display={{ base: "none", md: "block" }}
-              borderRadius={{ base: "1rem", md: "2rem" }}
+              borderRadius={{ base: "1rem", md: "0.5rem" }}
               cursor={"pointer"}
               _hover={{
                 opacity: 0.8,
@@ -134,7 +134,7 @@ export function Product({
                 transition: "all 0.3s ease",
                 transform: "scale(0.95)",
               }}
-              h={{ base: "2rem", md: "2.8rem" }}
+              h={{ base: "2rem", md: "2.5rem" }}
               background="linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)"
               color={"#ffff"}
               w={"100%"}
