@@ -40,7 +40,6 @@ export function Admin() {
   async function handleOnSubmit(formValues: FormData) {
     const { title, author, price, image, description, productLink } =
       formValues;
-    console.log(formValues);
     const productRef = ref(database, `records/products`);
     await push(productRef, {
       id: uuid(),
