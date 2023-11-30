@@ -1,34 +1,37 @@
 import * as Chakra from "@chakra-ui/react";
-import { SlideTransition } from "../../components/slideTransition";
 import { useDisclosure } from "@chakra-ui/react";
 
 import { FaBagShopping } from "react-icons/fa6";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import { useEffect, useState } from "react";
 import { ProductProps } from "../../context/ProductContext";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { database } from "../../services";
 import { get, ref } from "@firebase/database";
 import { formatPrice } from "../../helpers";
 import { CollapseTransition } from "../../components";
 
 export function BookDetail() {
-  const { isOpen, onToggle, onClose } = useDisclosure();
+  const { isOpen, onToggle } = useDisclosure();
   const [product, setProduct] = useState<ProductProps>();
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const { id } = useParams();
 
   async function getProductById() {
     if (id) {
+      setLoading(true);
       const productRef = ref(database, `records/products/${id}`);
       const getProduct = await get(productRef);
       setProduct(getProduct.val());
+      setLoading(false);
     }
   }
 
   function handleBuyProduct() {
-    if (product?.productLink) {
-      navigate(product.productLink);
+    const productLink = product?.productLink;
+
+    if (productLink) {
+      window.location.href = productLink;
     }
   }
 
@@ -50,13 +53,16 @@ export function BookDetail() {
         flexDirection={{ base: "column", md: "row" }}
         gap={{ base: "0", md: "2rem" }}
       >
-        <Chakra.Image
-          src={product?.image}
-          alt={product?.title}
-          w={{ md: 500, base: 350 }}
-          height={{ md: 500, base: 450 }}
-          objectFit={"cover"}
-        />
+        <Chakra.Skeleton isLoaded={!loading} fadeDuration={1}>
+          <Chakra.Image
+            borderRadius={"0.3rem"}
+            src={product?.image}
+            alt={product?.title}
+            w={{ md: 500, base: 350 }}
+            height={{ md: 500, base: 450 }}
+            objectFit={"cover"}
+          />
+        </Chakra.Skeleton>
         <Chakra.Box
           w={"100%"}
           display={"flex"}
@@ -64,16 +70,22 @@ export function BookDetail() {
           pt={{ base: "1.5rem", md: 0 }}
         >
           <Chakra.Flex w={"100%"} flexDirection={"column"} gap={"0.5rem"}>
-            <Chakra.Text fontSize={"1.5rem"} fontWeight={700}>
-              {product?.title.toUpperCase()}
-            </Chakra.Text>
-            <Chakra.Text>{product?.author}</Chakra.Text>
-            <Chakra.Text fontSize={"1.2rem"} fontWeight={"bold"} color={"#fff"}>
-              {formatPrice({
-                value: product ? product.price : 0,
-                currency: "BRL",
-              })}
-            </Chakra.Text>
+            <Chakra.Skeleton isLoaded={!loading} fadeDuration={4}>
+              <Chakra.Text fontSize={"1.5rem"} fontWeight={700}>
+                {product?.title.toUpperCase()}
+              </Chakra.Text>
+              <Chakra.Text>{product?.author}</Chakra.Text>
+              <Chakra.Text
+                fontSize={"1.2rem"}
+                fontWeight={"bold"}
+                color={"#fff"}
+              >
+                {formatPrice({
+                  value: product ? product.price : 0,
+                  currency: "BRL",
+                })}
+              </Chakra.Text>
+            </Chakra.Skeleton>
             <Chakra.Button
               w={"100%"}
               maxW={"200px"}
@@ -105,7 +117,7 @@ export function BookDetail() {
               w={"full"}
               maxW={"300px"}
               display={{ base: "none", md: "block" }}
-              borderRadius={"2rem"}
+              borderRadius={"0.5rem"}
               color={"white"}
               background="linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)"
               fontSize={"1rem"}
@@ -132,8 +144,9 @@ export function BookDetail() {
           >
             <Chakra.Button
               onClick={handleBuyProduct}
-              borderRadius={"2rem"}
+              borderRadius={"0.5rem"}
               w={"full"}
+              h={"2.8rem"}
               color={"white"}
               background="linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)"
               fontSize={"1rem"}
@@ -152,11 +165,6 @@ export function BookDetail() {
           </Chakra.Flex>
         </Chakra.Box>
       </Chakra.Flex>
-      <SlideTransition isOpen={isOpen} onClose={onClose} direction={"bottom"}>
-        <Chakra.Text fontSize={"1.2rem"} fontWeight={400}>
-          {product?.description}
-        </Chakra.Text>
-      </SlideTransition>
     </Chakra.Flex>
   );
 }

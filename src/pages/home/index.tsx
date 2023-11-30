@@ -68,7 +68,9 @@ export function Home() {
                   fontSize={"0.8rem"}
                   fontWeight={400}
                 >
-                  {item.author}
+                  {item.author.length > 15
+                    ? `${item.author.substring(0, 15)}...`
+                    : item.author}
                 </Chakra.Text>
               </Chakra.Flex>
             </Chakra.Flex>

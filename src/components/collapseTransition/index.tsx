@@ -11,14 +11,7 @@ export function CollapseTransition({
 }: CollapseTransitionProps) {
   return (
     <Collapse in={isOpen} animateOpacity>
-      <Box
-        mb={"4"}
-        display={{ md: "block", base: "none" }}
-        color="white"
-        bg="transparent"
-        rounded="md"
-        shadow="md"
-      >
+      <Box mb={"4"} color="white" bg="transparent" rounded="md" shadow="md">
         {children}
       </Box>
     </Collapse>
