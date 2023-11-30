@@ -29,7 +29,7 @@ export function HeaderMobile({ isOpen, onOpen, onClose }: HeaderMobileProps) {
       bottom={0}
       zIndex={"5"}
       mt={"0.5rem"}
-      bg={"#0c0a09"}
+      bg={"#191919"}
       borderTopRadius={"1.5rem"}
       boxShadow={"rgba(0, 0, 0, 0.1) 0px 4px 12px"}
     >
