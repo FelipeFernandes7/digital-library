@@ -17,32 +17,52 @@ import {
 import { FaEdit } from "react-icons/fa";
 import { TextField } from "../../..";
 import { useEffect, useState } from "react";
-import { useProduct } from "../../../../hooks";
 import { ProductProps } from "../../../../context/ProductContext";
+import { getBookById } from "../../../../services/api";
 
 interface UpdateMobileProps {
+  id: string;
   isOpen: boolean;
   onClose: () => void;
   placement: "bottom" | "top" | "left" | "right";
 }
 export function UpdateMobile({
+  id,
   isOpen,
   onClose,
   placement,
 }: UpdateMobileProps) {
   const [bestSeller, setBestSeller] = useState(false);
-  const [newProduct, setNewProduct] = useState<ProductProps>();
-  const { product } = useProduct();
+  const [newProduct, setNewProduct] = useState<ProductProps>({
+    id: "",
+    author: "",
+    title: "",
+    price: 0,
+    image: "",
+    description: "",
+    productLink: "",
+    isBestSeller: false,
+    registeredBy: "",
+    registeredIn: "",
+  });
+  const getById = async () => {
+    if (newProduct) {
+      const result = await getBookById(id);
+      setNewProduct(result);
+    }
+  };
 
   useEffect(() => {
-    product.map((item) => {
-      setNewProduct(item);
-    });
+    getById();
+    return () => {
+      getById();
+    };
   }, [isOpen]);
 
   const handleRadioChange = (value: string) => {
     setBestSeller(value === "true");
   };
+
   return (
     <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
       <DrawerOverlay />
@@ -72,7 +92,7 @@ export function UpdateMobile({
               placeholder="Cole o Link da Imagem Aqui..."
               value={newProduct?.image}
               onChange={(e) =>
-                setNewProduct({ ...product[0], image: e.target.value })
+                setNewProduct({ ...newProduct, image: e.target.value })
               }
               bg={"#151515"}
               color={"#fff"}
@@ -83,7 +103,7 @@ export function UpdateMobile({
               placeholder="Cole o Link do Produto Aqui..."
               value={newProduct?.productLink}
               onChange={(e) =>
-                setNewProduct({ ...product[0], productLink: e.target.value })
+                setNewProduct({ ...newProduct, productLink: e.target.value })
               }
               bg={"#151515"}
               color={"#fff"}
@@ -94,7 +114,7 @@ export function UpdateMobile({
               placeholder="Escreva o Título Aqui..."
               value={newProduct?.title}
               onChange={(e) =>
-                setNewProduct({ ...product[0], title: e.target.value })
+                setNewProduct({ ...newProduct, title: e.target.value })
               }
               bg={"#151515"}
               color={"#fff"}
@@ -105,7 +125,7 @@ export function UpdateMobile({
               placeholder="Escreva a Descrição Aqui..."
               value={newProduct?.description}
               onChange={(e) =>
-                setNewProduct({ ...product[0], description: e.target.value })
+                setNewProduct({ ...newProduct, description: e.target.value })
               }
               bg={"#151515"}
               color={"#fff"}
@@ -116,7 +136,7 @@ export function UpdateMobile({
               placeholder="Escreva o Autor Aqui..."
               value={newProduct?.author}
               onChange={(e) =>
-                setNewProduct({ ...product[0], author: e.target.value })
+                setNewProduct({ ...newProduct, author: e.target.value })
               }
               bg={"#151515"}
               color={"#fff"}
@@ -128,7 +148,7 @@ export function UpdateMobile({
               placeholder="Escreva o Preço Aqui..."
               value={newProduct?.price}
               onChange={(e) =>
-                setNewProduct({ ...product[0], price: Number(e.target.value) })
+                setNewProduct({ ...newProduct, price: Number(e.target.value) })
               }
               bg={"#151515"}
               color={"#fff"}
@@ -158,6 +178,7 @@ export function UpdateMobile({
             >
               <Button
                 w={"100%"}
+                h={"2.7rem"}
                 border={"1px solid #fff"}
                 bg={"transparent"}
                 color={"#fff"}
@@ -173,6 +194,7 @@ export function UpdateMobile({
 
               <Button
                 type="submit"
+                h={"2.7rem"}
                 w={"full"}
                 color={"white"}
                 borderRadius={"0.5rem"}

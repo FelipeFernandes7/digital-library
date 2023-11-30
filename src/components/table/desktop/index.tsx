@@ -34,6 +34,11 @@ export function TableDesktop({ products }: TableDesktopProps) {
     }
   }
 
+  function handleUpdate(id: string) {
+    setProductId(id);
+    onOpenEdit();
+  }
+
   function handleOpen(id: string) {
     setProductId(id);
     onOpen();
@@ -75,11 +80,10 @@ export function TableDesktop({ products }: TableDesktopProps) {
                 })}
               </Chakra.Td>
               <Chakra.Td>
-                {" "}
                 <Chakra.Flex w={"100%"} gap={1} justifyContent={"flex-end"}>
                   <Chakra.Button
                     p={0}
-                    onClick={onOpenEdit}
+                    onClick={() => handleUpdate(product.id)}
                     variant={"unstyled"}
                     cursor={"pointer"}
                     bg={"none"}
@@ -136,6 +140,7 @@ export function TableDesktop({ products }: TableDesktopProps) {
         placement="bottom"
         isOpen={isOpenEdit}
         onClose={onCloseEdit}
+        id={productId}
       />
     </Chakra.TableContainer>
   );
