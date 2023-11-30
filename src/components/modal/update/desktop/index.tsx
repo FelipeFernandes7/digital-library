@@ -1,23 +1,19 @@
 import * as Chakra from "@chakra-ui/react";
-import { TextField } from "../..";
+import { TextField } from "../../..";
 import { useMediaQuery } from "@chakra-ui/react";
 import { FaEdit } from "react-icons/fa";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useProduct } from "../../../hooks";
-import { ProductProps } from "../../../context/ProductContext";
 
 interface ModalEditProps {
   isOpen: boolean;
   onClose: () => void;
-  props: ProductProps;
 }
-export function ModalEdit({ isOpen, onClose, props }: ModalEditProps) {
+export function UpdateDesktop({ isOpen, onClose }: ModalEditProps) {
   const [isMobile] = useMediaQuery("(max-width: 600px)");
   const [bestSeller, setBestSeller] = useState(false);
-  const { updateProduct } = useProduct();
 
   const schema = z.object({
     title: z.string(),
@@ -31,8 +27,6 @@ export function ModalEdit({ isOpen, onClose, props }: ModalEditProps) {
 
   const {
     register,
-    handleSubmit,
-    setValue,
     getValues,
     formState: { errors },
   } = useForm<FormData>({
@@ -40,30 +34,20 @@ export function ModalEdit({ isOpen, onClose, props }: ModalEditProps) {
     mode: "onChange",
   });
 
-  useEffect(() => {
-    setValue("title", props?.title);
-    setValue("author", props?.author);
-    setValue("price", props?.price);
-    setValue("description", props?.description);
-    setValue("image", props?.image);
-    setValue("productLink", props?.productLink);
-  }, [isOpen]);
+  //   async function handleOnSubmit(formValues: FormData) {
+  //     const { title, author, price, image, description, productLink } =
+  //       formValues;
+  //     updateProduct({
+  //       title,
+  //       author,
+  //       price,
 
-  async function handleOnSubmit(formValues: FormData) {
-    const { title, author, price, image, description, productLink } =
-      formValues;
-    updateProduct({
-      ...props,
-      title,
-      author,
-      price,
-
-      image,
-      description,
-      productLink,
-      isBestSeller: bestSeller,
-    });
-  }
+  //       image,
+  //       description,
+  //       productLink,
+  //       isBestSeller: bestSeller,
+  //     });
+  //   }
 
   return (
     <Chakra.Modal
@@ -104,7 +88,6 @@ export function ModalEdit({ isOpen, onClose, props }: ModalEditProps) {
         <Chakra.ModalBody pb={6}>
           <Chakra.Box
             as="form"
-            onSubmit={handleSubmit(handleOnSubmit)}
             w={"100%"}
             gap={"1rem"}
             display={"flex"}

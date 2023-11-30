@@ -9,7 +9,7 @@ import { formatPrice } from "../../../helpers";
 import { AlertModal } from "../../modal/alert";
 import { useState } from "react";
 import { useProduct } from "../../../hooks";
-import { ModalEdit } from "../../modal/modalEdit";
+import { ModalUpdate } from "../../modal/update";
 
 interface TableMobileProps {
   products: ProductProps[];
@@ -153,10 +153,10 @@ export function TableMobile({ products }: TableMobileProps) {
         onClose={onClose}
         deleteProduct={() => handleDeleteProduct(productId)}
       />
-      <ModalEdit
+      <ModalUpdate
         isOpen={isOpenEdit}
         onClose={onCloseEdit}
-        props={product ? product : ({} as ProductProps)}
+        placement={"bottom"}
       />
     </Chakra.Flex>
   );

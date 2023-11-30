@@ -66,7 +66,7 @@ export function Temperature() {
               alignItems={"center"}
               fontWeight={700}
             >
-              {weather?.main.temp}°C
+              {weather?.main.temp.toFixed(0)}°C
               <Chakra.Box fontWeight={700}>{getWeatherIcon(w.icon)}</Chakra.Box>
             </Chakra.Text>
             <Chakra.Text>{w.description}</Chakra.Text>

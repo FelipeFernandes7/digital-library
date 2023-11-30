@@ -5,10 +5,10 @@ import { ptBR } from "date-fns/locale";
 import { formatPrice } from "../../../helpers";
 import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
-import { ModalEdit } from "../../modal/modalEdit";
 import { AlertModal } from "../../modal/alert";
 import { useProduct } from "../../../hooks";
 import { useState } from "react";
+import { ModalUpdate } from "../../modal/update";
 
 interface TableDesktopProps {
   products: ProductProps[];
@@ -132,8 +132,8 @@ export function TableDesktop({ products }: TableDesktopProps) {
         onClose={onClose}
         deleteProduct={() => handleDeleteProduct(productId)}
       />
-      <ModalEdit
-        props={products[0]}
+      <ModalUpdate
+        placement="bottom"
         isOpen={isOpenEdit}
         onClose={onCloseEdit}
       />
