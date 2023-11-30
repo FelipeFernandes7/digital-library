@@ -78,8 +78,9 @@ export function LoginMobile({ isOpen, onClose, placement }: LoginMobileProps) {
   return (
     <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
       <DrawerOverlay />
-      <DrawerContent bg={"#191919"} borderTopRadius={"1.5rem"}>
+      <DrawerContent h={"65vh"} bg={"#191919"} borderTopRadius={"1.5rem"}>
         <DrawerHeader
+          borderBottomWidth="1px"
           w={"100%"}
           fontWeight={700}
           textAlign={"center"}
@@ -93,13 +94,14 @@ export function LoginMobile({ isOpen, onClose, placement }: LoginMobileProps) {
         </DrawerHeader>
         <DrawerBody>
           <FormControl
+            overflowY={"hidden"}
+            mt={4}
             w={"100%"}
             height={"100%"}
             as="form"
             onSubmit={handleSubmit(onSubmit)}
             display={"flex"}
             flexDirection={"column"}
-            gap={"0.95rem"}
           >
             <FormControl>
               <FormLabel>E-mail</FormLabel>
@@ -136,7 +138,7 @@ export function LoginMobile({ isOpen, onClose, placement }: LoginMobileProps) {
             >
               <Button
                 type="submit"
-                mt={3}
+                mb={3}
                 borderRadius={"0.5rem"}
                 w={"full"}
                 color={"white"}
