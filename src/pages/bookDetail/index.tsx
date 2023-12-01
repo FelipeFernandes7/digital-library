@@ -150,7 +150,7 @@ export function BookDetail() {
               h={"2.8rem"}
               color={"white"}
               background="linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%)"
-              fontSize={"1rem"}
+              fontSize={"0.95rem"}
               fontWeight={700}
               transition={"all 0.3s ease"}
               _active={{
