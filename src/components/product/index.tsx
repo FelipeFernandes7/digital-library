@@ -103,6 +103,7 @@ export function Product({
             fontWeight={400}
             color={"#22c55e"}
             mt={{ base: "0.5rem", md: "1rem" }}
+            fontStyle={"italic"}
           >
             {formatPrice({
               value: price,
@@ -121,6 +122,7 @@ export function Product({
             p={{ md: "0.5rem", base: "0" }}
           >
             <Chakra.Button
+              fontSize={{ base: "0.8rem", md: "1rem" }}
               onClick={navigate}
               className="active-button"
               display={{ base: "none", md: "block" }}
