@@ -93,7 +93,7 @@ export function BookDetail() {
               justifyContent={"flex-start"}
               variant={"unstyled"}
               bg={"transparent"}
-              color={"#7918F2 "}
+              color={"#cbd5e1"}
               opacity={isOpen ? 0.5 : 1}
               _hover={{
                 transition: "all 0.3s ease",
