@@ -79,6 +79,7 @@ export function BookDetail() {
                 fontSize={"1.2rem"}
                 fontWeight={"bold"}
                 color={"#fff"}
+                fontStyle={"italic"}
               >
                 {formatPrice({
                   value: product ? product.price : 0,
