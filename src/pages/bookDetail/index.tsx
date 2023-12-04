@@ -90,7 +90,7 @@ export function BookDetail() {
               <Chakra.Text
                 fontSize={"1.2rem"}
                 fontWeight={"bold"}
-                color={"#fff"}
+                color={"#22c55e"}
                 fontStyle={"italic"}
               >
                 {formatPrice({
