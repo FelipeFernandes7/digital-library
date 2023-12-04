@@ -53,7 +53,11 @@ export function BookDetail() {
         flexDirection={{ base: "column", md: "row" }}
         gap={{ base: "0", md: "2rem" }}
       >
-        <Chakra.Skeleton isLoaded={!loading} fadeDuration={1}>
+        <Chakra.Skeleton
+          isLoaded={!loading}
+          fadeDuration={1}
+          borderRadius={"0.3rem"}
+        >
           <Chakra.Image
             borderRadius={"0.3rem"}
             src={product?.image}
@@ -70,8 +74,16 @@ export function BookDetail() {
           pt={{ base: "1.5rem", md: 0 }}
         >
           <Chakra.Flex w={"100%"} flexDirection={"column"} gap={"0.5rem"}>
-            <Chakra.Skeleton isLoaded={!loading} fadeDuration={4}>
-              <Chakra.Text fontSize={"1.5rem"} fontWeight={700}>
+            <Chakra.Skeleton
+              isLoaded={!loading}
+              fadeDuration={4}
+              borderRadius={"1rem"}
+            >
+              <Chakra.Text
+                fontSize={"1.5rem"}
+                fontWeight={700}
+                textAlign={"center"}
+              >
                 {product?.title.toUpperCase()}
               </Chakra.Text>
               <Chakra.Text>{product?.author}</Chakra.Text>
@@ -145,7 +157,7 @@ export function BookDetail() {
           >
             <Chakra.Button
               onClick={handleBuyProduct}
-              borderRadius={"0.5rem"}
+              borderRadius={"1.5rem"}
               w={"full"}
               h={"2.8rem"}
               color={"white"}
