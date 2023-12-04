@@ -80,9 +80,10 @@ export function BookDetail() {
               borderRadius={"1rem"}
             >
               <Chakra.Text
-                fontSize={"1.5rem"}
+                fontSize={{ md: "1.5rem", base: "1rem" }}
                 fontWeight={700}
-                textAlign={"center"}
+                whiteSpace={"pre-wrap"}
+                color={"#fff"}
               >
                 {product?.title.toUpperCase()}
               </Chakra.Text>
